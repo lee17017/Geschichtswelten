@@ -16,6 +16,7 @@ public class Parser {
         try {
             RandomAccessFile file = new RandomAccessFile(filename, "r");
             String line;
+            // kann man auch entfernen wenn man fixe ZeilenAnzahl hat
             while ((line = file.readLine()) != null) {
                 if (!line.equals("")) {
                     i++;
@@ -111,6 +112,6 @@ public class Parser {
         //	Game.Get().OnCommand(inp/100, inp%100);
         //}
 
-        //a.repaint(); // wenn bg sich ändert
+        //a.repaint(); // wenn bg sich ï¿½ndert
     }
 }

@@ -13,13 +13,13 @@ import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 
-//Counter eröhen sachen löschen - position setzen
+//Counter erÃ¶hen sachen lÃ¶schen - position setzen
 class Output extends Thread{
     private GUI gui;
     ArrayList<String> input;
     public boolean done;
     static private int count=0;
-    static private int maxCount = 20;
+    static private int maxCount = 50;
     private ArrayList<Integer> waitTime;
     private ArrayList<Integer> delay;
     private boolean fire = false;
@@ -59,7 +59,6 @@ class Output extends Thread{
 		        try {
 		            Thread.sleep(delay.get(0));
 		        } catch (InterruptedException ex) {
-		        	
 		        }
     		}
 	    	
@@ -71,9 +70,10 @@ class Output extends Thread{
 	        String inp = input.get(0);
 	
 	        if (count > maxCount) 
+                {
 	            gui.text.setText(gui.text.getText().split("\n", (2))[1]);
-	       
-	        else 
+                    gui.text.setCaretPosition( gui.text.getDocument().getLength());
+                }else 
 	            count++;
 	        
 	
@@ -88,14 +88,14 @@ class Output extends Thread{
 	            if(!waitTime.get(0).equals(0) && !fire){
 		            gui.text.setText(gui.text.getText() + inp.charAt(0));
 		            inp = inp.substring(1);
-		            gui.text.update(gui.text.getGraphics());
+                          
 	            }
 	            else if(waitTime.get(0).equals(0) || fire){
 	            	gui.text.setText(gui.text.getText() + inp);
-	            	gui.text.update(gui.text.getGraphics());
 	            	break;
 	            }
 	        }
+                
                 gui.text.setCaretPosition( gui.text.getDocument().getLength());
 	        input.remove(0);
 	        waitTime.remove(0);
@@ -124,47 +124,50 @@ class ImagePanel extends JPanel{
         super.paintComponent(g);
         if(image != null)
         {
-            int w = getWidth();
-            int h = getHeight();
-            int iw = image.getWidth( this );
-            int ih = image.getHeight( this );
-            int x = ( w - iw ) / 2;
-            int y = ( h - ih ) / 2;
-            g.drawImage( image, x, y, this );
+           
+            g.drawImage( image, 0, 0, getWidth(), getHeight(), this );
         }
     }
 }
 
 public class GUI extends JFrame{
     
-    private Image[] background= {
-        //Toolkit.getDefaultToolkit().getImage(getClass().getClassLoader().getResource("ressources/bg0.jpg")),
-        //Toolkit.getDefaultToolkit().getImage(getClass().getClassLoader().getResource("ressources/bg1.jpg"))
-    };
+    private Image[] background;
  
-    
+    final int anzBackgrounds = 2;
     Thread outThread = new Output(this, "", 0, 0);
     JPanel input = new JPanel();
     JPanel output = new JPanel();
+    JPanel platzhalter = new JPanel();
     ImagePanel bg;
-    JTextField jt = new JTextField(53);
-    JTextArea text = new JTextArea(19,53);
+    JTextField jt = new JTextField();
+    JTextArea text = new JTextArea();
     JScrollPane sp = new JScrollPane(text);
     
     public GUI()
     {
+        //Laden der Hintergrundbilder
+        background = new Image[anzBackgrounds];
+        for(int i=0; i<anzBackgrounds; i++)
+            background[i] = Toolkit.getDefaultToolkit().getImage(getClass().getClassLoader().getResource("ressources/bg"+i+".jpg"));
+        
+        
         ((Output) outThread).done = true;
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
         setTitle("Geschichtswelten");
-        setSize(600,400);
-        setLocation(dim.width/2-getSize().width/2, dim.height/2-getSize().height/2);
+        setSize(dim.width,dim.height);
+        setExtendedState(JFrame.MAXIMIZED_BOTH);
+       setUndecorated(true);//make fullscreen without x and stuff
+     
         setVisible(true);
         setResizable(false);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setLayout(new BorderLayout(0, 0));
+      
+        bg = new ImagePanel(background[0]);
+        bg.setLayout(new BorderLayout());
+        setContentPane(bg);
         
-        //bg = new ImagePanel(background[0]);
-        //bg.setLayout(new BorderLayout());
-        //setContentPane(bg);
         
         sp.setBorder(BorderFactory.createEmptyBorder());
         sp.setOpaque(false);
@@ -174,19 +177,22 @@ public class GUI extends JFrame{
         text.setLineWrap(true);
         text.setOpaque(false);
         text.setBorder(BorderFactory.createEmptyBorder());
+        text.setFont(new Font("Arial", Font.PLAIN, 16));
         text.setForeground(Color.black);
-        
+        jt.setFont(new Font("Arial", Font.PLAIN, 16));
+        jt.setPreferredSize(new Dimension(dim.width, 25));
         input.setOpaque(false);
-        input.setLayout(new FlowLayout(0));
         input.add(jt);
+        input.setBorder(BorderFactory.createEmptyBorder(0,0,10,0));//top, left, bottom, right
         add(input, BorderLayout.SOUTH);
         
         output.setOpaque(false);
-        output.setLayout(new FlowLayout(0));
+        output.setLayout(new BorderLayout(0,0));
+        output.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
         output.add(sp);
-        add(output);
+        add(output, BorderLayout.CENTER);
 
-        GUI tmp = this;
+        
         jt.addActionListener(new ActionListener()
         {
             public void actionPerformed(ActionEvent e)
@@ -224,7 +230,7 @@ public class GUI extends JFrame{
     
     public void switchBg(int nmb)
     {
-        //bg.setImage(background[nmb]);
+        bg.setImage(background[nmb]);
     }
     
     public void enableWriting(boolean b){
