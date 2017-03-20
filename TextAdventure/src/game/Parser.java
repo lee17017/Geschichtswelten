@@ -14,7 +14,7 @@ public class Parser {
         String[][] temp = null;
         int i = 0;
         try {
-            RandomAccessFile file = new RandomAccessFile(filename, "r");
+            RandomAccessFile file = new RandomAccessFile("src/ressources/txt/"+filename, "r");
             String line;
             // kann man auch entfernen wenn man fixe ZeilenAnzahl hat
             while ((line = file.readLine()) != null) {
@@ -84,7 +84,6 @@ public class Parser {
     public static void main(String[] args)
     {
         init();
-       
         System.out.println(command[4][1]);
     }
 

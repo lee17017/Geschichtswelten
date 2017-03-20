@@ -149,7 +149,7 @@ public class GUI extends JFrame{
         //Laden der Hintergrundbilder
         background = new Image[anzBackgrounds];
         for(int i=0; i<anzBackgrounds; i++)
-            background[i] = Toolkit.getDefaultToolkit().getImage(getClass().getClassLoader().getResource("ressources/bg"+i+".jpg"));
+            background[i] = Toolkit.getDefaultToolkit().getImage(getClass().getClassLoader().getResource("ressources/bg/bg"+i+".jpg"));
         
         
         ((Output) outThread).done = true;
