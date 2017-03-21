@@ -155,7 +155,7 @@ public class GUI extends JFrame{
         ((Output) outThread).done = true;
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
         setTitle("Geschichtswelten");
-        setSize(dim.width,dim.height);
+        setSize(dim.width,dim.height);  
         setExtendedState(JFrame.MAXIMIZED_BOTH);
        setUndecorated(true);//make fullscreen without x and stuff
      
@@ -197,9 +197,20 @@ public class GUI extends JFrame{
         {
             public void actionPerformed(ActionEvent e)
             {
-                String temp = jt.getText();
-                jt.setText("");
-                jt.update(jt.getGraphics());
+                
+                String temp="";
+                if(jt.isEditable())
+                {
+                    temp = jt.getText();
+                    jt.setText("");
+                    jt.update(jt.getGraphics());
+                }
+                temp = temp.toLowerCase();
+                if(temp.equals("beende spiel"))
+                {
+                    dispose();
+                    System.exit(0);
+                }
                 Game.Get().OnEnterPressed();
                 Game.Get().OnInput(temp);
                 //if(((Output) outThread).done) Parser.handle(temp, tmp);
@@ -228,12 +239,20 @@ public class GUI extends JFrame{
     	write("> "+input+"\n", waitTime, delay);
     }
     
-    public void switchBg(int nmb)
+    public void setBg(int nmb)
     {
         bg.setImage(background[nmb]);
     }
     
+    public void setInputMessage(String msg)
+    {
+        jt.setHorizontalAlignment(JTextField.CENTER);
+        jt.setText(msg);
+        jt.setEditable(false);
+    }
     public void enableWriting(boolean b){
+        if(b)
+            jt.setHorizontalAlignment(JTextField.LEFT);
     	jt.setEditable(b);
     }
     

@@ -19,33 +19,33 @@ public class GameState0 extends GameState{
 		"Ich werde im Castle der Familie Graham meine Untersuchungen beginnen.",
 		"Seine Lordschaft stammt bekanntlich aus einer alten, aber einflussreichen Adelsfamilie, "
 				+ "die nur aufgrund des Unternehmens von Edward ihren Landsitz erhalten konnte.",
-		"Der Fall hörte sich für mich sehr interessant an, "
-				+ "weswegen ich mich dafür entschied undercover als Butler der Grahams eine Weile zu arbeiten.",
+		"Der Fall hï¿½rte sich fï¿½r mich sehr interessant an, "
+				+ "weswegen ich mich dafï¿½r entschied undercover als Butler der Grahams eine Weile zu arbeiten.",
 		"Nun reise ich mit dem Zug nach Edinburgh um von dort aus mit einem Taxi in die Highlands weiter zu fahren.."
 	};
 	
 	int dialogCount = 0;
 	String[] dialog = {
-		"„Sie wollen zum Schloss der Grahams?“",
-		"„Ganz Richtig“",
-		"„Sie beginnen dort also zu arbeiten? Haben sie auch etwas Angst?“",
-		"„Wieso denn Angst? Aufgeregt bin ich, weil es mein erster Arbeitstag ist. Ich freue mich sehr auf das Umfeld dort und bin absolut gespannt.“",
-		"„Ach, man erzählt sich nur, dass es im Castle der Familie Graham spuken soll.",
-		"Manchmal hört man dort nachts Musik.",
-		"Das ist es zumindest, was sich die Leute erzählen.“",
-		"„Ah ich verstehe. Grund dafür ist natürlich ein Geist.“",
+		"ï¿½Sie wollen zum Schloss der Grahams?ï¿½",
+		"ï¿½Ganz Richtigï¿½",
+		"ï¿½Sie beginnen dort also zu arbeiten? Haben sie auch etwas Angst?ï¿½",
+		"ï¿½Wieso denn Angst? Aufgeregt bin ich, weil es mein erster Arbeitstag ist. Ich freue mich sehr auf das Umfeld dort und bin absolut gespannt.ï¿½",
+		"ï¿½Ach, man erzï¿½hlt sich nur, dass es im Castle der Familie Graham spuken soll.",
+		"Manchmal hï¿½rt man dort nachts Musik.",
+		"Das ist es zumindest, was sich die Leute erzï¿½hlen.ï¿½",
+		"ï¿½Ah ich verstehe. Grund dafï¿½r ist natï¿½rlich ein Geist.ï¿½",
 		"Der Taxifahrer schmunzelt.",
-		"„Ganz richtig ein Geist. In Schottland spukt es ja überall nicht wahr?",
-		"Allein Edinburgh wird nachts von den unheimlichsten Geistern heimgesucht.“",
-		"„Ja das habe ich auch schon gehört. Die verspukteste Stadt Europas nicht wahr?“",
-		"„Das ist das besondere an Edinburgh.",
-		"Am Tage romantisch und in der Nacht gespenstisch.“",
+		"ï¿½Ganz richtig ein Geist. In Schottland spukt es ja ï¿½berall nicht wahr?",
+		"Allein Edinburgh wird nachts von den unheimlichsten Geistern heimgesucht.ï¿½",
+		"ï¿½Ja das habe ich auch schon gehï¿½rt. Die verspukteste Stadt Europas nicht wahr?ï¿½",
+		"ï¿½Das ist das besondere an Edinburgh.",
+		"Am Tage romantisch und in der Nacht gespenstisch.ï¿½",
 		"Zeit verstreicht...",
-		"„Hier ist es, das Schloss der Adelsfamilie Graham. "
-				+ "Soll ich ihnen das Gepäck hinein tragen?“",
-		"„Nein danke das schaffe ich schon. "
-				+ "Nett von Ihnen. Auf Wiedersehen!“",
-		"„Viel Erfolg bei Ihrer Arbeit!“"
+		"ï¿½Hier ist es, das Schloss der Adelsfamilie Graham. "
+				+ "Soll ich ihnen das Gepï¿½ck hinein tragen?ï¿½",
+		"ï¿½Nein danke das schaffe ich schon. "
+				+ "Nett von Ihnen. Auf Wiedersehen!ï¿½",
+		"ï¿½Viel Erfolg bei Ihrer Arbeit!ï¿½"
 		};
 	
 	public GameState0(World world, Player player, Map<Integer, Entity> entities) {
@@ -55,7 +55,7 @@ public class GameState0 extends GameState{
 
 	@Override
 	public void OnStart(GUI gui) {
-		gui.enableWriting(false);
+                gui.setInputMessage("Press Enter");
 		gui.writeln(monolog[0], 50, 0);
 		gui.writeln(monolog[1], 50, 500);
 		gui.writeln(monolog[2], 50, 500);

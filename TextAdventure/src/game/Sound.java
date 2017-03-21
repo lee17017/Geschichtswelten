@@ -21,7 +21,7 @@ class MusicPlayer {
 
 public class Sound {
 
-    private static int bgmAnz = 2;
+    private static int bgmAnz = 3;
     private static Clip[] bgmClip;
     private static int bgmCur = -1;
 
@@ -102,9 +102,9 @@ public class Sound {
     public static void main(String[] args) throws Exception {
 
         Sound.init();
-        Sound.playBGM(0);
+        Sound.playBGM(2);
 
-        Thread.sleep(4000);
+        Thread.sleep(400000);
 
         Sound.playBGM(-1);
 
@@ -116,6 +116,5 @@ public class Sound {
         Sound.playBGM(0);
         Thread.sleep(40000);
         System.out.println("end");
-
     }
 }

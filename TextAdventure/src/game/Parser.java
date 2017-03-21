@@ -8,7 +8,7 @@ public class Parser {
     static Scanner sc = new Scanner(System.in);
     static String[][] command;
     static String[][] params;
-
+    static String[][] attribute;
     private static String[][] readFile(String filename)
     {
         String[][] temp = null;
@@ -25,11 +25,13 @@ public class Parser {
             temp = new String[i][];
             file.seek(0);
             i = 0;
+            
+            
             while ((line = file.readLine()) != null) {
                 if (!line.equals("")) {
                     temp[i] = line.split(" ");
                     for(int j=0; j<temp[i].length; j++)
-                        temp[i][j] = "(.*)" + temp[i][j] + "(.*)";
+                        temp[i][j] = "(.*)" + temp[i][j].replace('_', ' ') + "(.*)";
                     
                     i++;
                 }
@@ -46,13 +48,16 @@ public class Parser {
     {
         command = readFile("command.txt");
         params = readFile("param.txt");
+        attribute = readFile("attribute.txt");
     }
-    // returns 4-digit number code (first 2 digits=command, last 2 digits=paramter)
+    
     public static int command(String input) {
+        
         if("".equals(input))
             return -1;
         input = input.toLowerCase();
         
+      
         //search for command
         for (int i = 0; i < command.length; i++) {
             for (int j = 0; j < command[i].length; j++) {
@@ -66,51 +71,39 @@ public class Parser {
     }
 
     public static int param(String input) {
+          if("".equals(input))
+            return -1;
         input = input.toLowerCase();
         
         //search for parameter of command
-        for (int j = 0; j < params.length; j++) {
-            for(int h = 0; h < params[j].length; h++)
+        for (int i = 0; i < params.length; i++) {
+            for(int j = 0; j < params[i].length; j++)
             {
-                if (input.matches(params[j][h])) {
-                    return j;
+                if (input.matches(params[i][j])) {
+                    return i;
                 }
             }
         }
-        
         return -1;
     }
     
-    public static void main(String[] args)
-    {
-        init();
-        System.out.println(command[4][1]);
+    public static int attribute(String input) {
+          if("".equals(input))
+            return -1;
+        input = input.toLowerCase();
+        
+        //search for parameter of command
+        for (int i = 0; i < attribute.length; i++) {
+            for(int j = 0; j < attribute[i].length; j++)
+            {
+                if (input.matches(attribute[i][j])) {
+                    return i;
+                }
+            }
+        }
+        return -1;
     }
 
-    //Muss alles in Handler
-    public static void handle(String input, GUI a)
-    {
-        if("".equals(input))
-        {
-            //a.write("", 0, 0);
-            return;
-        }
-        
-        int command = command(input);
-        int param = param(input);
-        
-        if(command == -1){
-        	return;
-            //System.out.println("ned oder");
-        }
-        //else if(inp < 100){
-        	//System.out.println("hier");
-        	//Game.Get().OnCommand(command, param);
-        //}
-        //else{System.out.println("hier2");
-        //	Game.Get().OnCommand(inp/100, inp%100);
-        //}
 
-        //a.repaint(); // wenn bg sich �ndert
-    }
+
 }

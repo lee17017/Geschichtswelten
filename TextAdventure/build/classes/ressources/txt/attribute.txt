@@ -1,0 +1,4 @@
+groß gross
+klein
+blau
+gruen grün
