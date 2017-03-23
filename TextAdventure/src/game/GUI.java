@@ -195,7 +195,7 @@ public class GUI extends JFrame{
         
         jt.addActionListener(new ActionListener()
         {
-            public void actionPerformed(ActionEvent e)
+         public void actionPerformed(ActionEvent e)
             {
                 
                 String temp="";
@@ -211,12 +211,13 @@ public class GUI extends JFrame{
                     dispose();
                     System.exit(0);
                 }
-                Game.Get().OnEnterPressed();
+                
+                // call Game::OnInput
                 Game.Get().OnInput(temp);
-                //if(((Output) outThread).done) Parser.handle(temp, tmp);
             }
         });
      
+        setVisible(true);
         jt.requestFocusInWindow();
     }
     
@@ -236,12 +237,16 @@ public class GUI extends JFrame{
     }
     
     public void writeln(String input, int waitTime, int delay){
-    	write("> "+input+"\n", waitTime, delay);
+        if(input=="")
+            return;
+        
+    	write("\n> "+input, waitTime, delay);
     }
     
     public void setBg(int nmb)
     {
         bg.setImage(background[nmb]);
+        bg.repaint();
     }
     
     public void setInputMessage(String msg)

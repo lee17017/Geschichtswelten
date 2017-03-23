@@ -2,7 +2,7 @@ import game.GUI;
 import game.Game;
 import game.Parser;
 import game.Sound;
-import java.awt.*;
+
 public class Application {
     static GUI gui;
     

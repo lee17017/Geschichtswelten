@@ -1,34 +1,10 @@
-vor
-zurueck zurück
-rechts
-links
-garten
-labyrinth
-eingangshalle
-bücherei buecherei
-musik
-billard
-lager
-wein keller
-küche kueche
-speise
-arbeit
-scarlettzimmer
-elliotzimmer
-deanzimmer
-edwardzimmer violazimmer
-scarlett
-elliot 
-dean gärtner gaertner 
-edward 
-viola
-spieler 
-schluessel schlüssel
-galerie
+straße strasse
+tor tuer tür pforte
+zaun
+kasten klingel anlage
+einfahrt
+schloss schloß anwesen
+blumen beet
+klopfer löwe loewe
+gemäld gemaeld bild
 flur
-schloss burg anwesen
-aussenbereich außenbereich draußen draussen anlage
-tuer tür tor pforte
-treppe stufe
-brunnen
-amulett

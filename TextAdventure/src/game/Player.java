@@ -1,118 +1,71 @@
-
 package game;
 
 import java.util.ArrayList;
 
+import world.Location;
 import world.World;
 
 public class Player {
-	private int room;		// room id
-	private int xPos, yPos;	// relative to room
+	private int location;
 	private char orientation;
-	private ArrayList<Entity> inventory;
+	private ArrayList<Integer> inventory;
 	private boolean isInDialog;
-	private Character currDialogPartner;
 	
 	public Player(){
+		location = 0;
 		inventory = new ArrayList<>();
 		isInDialog = false;
-		currDialogPartner = null;
 	}
 	
-	public boolean setState(World world, int room, int x, int y, char orientation){
-		if(!world.hasRoom(room))
+	public boolean Initialize(){
+		return true;
+	}
+	
+	public boolean setLocation(GUI gui, World world, int location){
+		if(Location.getLocation(location) == null || this.location == location)
 			return false;
 		
-		if(!world.hasRoomSection(room, x, y))
-			return false;
-		
-		this.room = room;
-		this.xPos = x;
-		this.yPos = y;
-		this.orientation = orientation;
+                if(Location.getLocation(this.location).getSoundID() != Location.getLocation(location).getSoundID())
+                {
+                    Sound.playBGM(Location.getLocation(location).getSoundID());
+                }
+                    
+                 if(Location.getLocation(this.location).getBildID() != Location.getLocation(location).getBildID())
+                {
+                    gui.setBg(Location.getLocation(location).getBildID());
+                }
+		Location.getLocation(this.location).onExit(gui, world, this);
+		this.location = location;
+		Location.getLocation(this.location).onEnter(gui, world, this);
 		
 		return true;
 	}
 	
-	public boolean goForward(World world){
-		int x = xPos;
-		int y = yPos;
-		
-		if(orientation == 'n') y++;
-		else if(orientation == 'e') x++;
-		else if(orientation == 's') y--;
-		else if(orientation == 'w') x--;
-		
-		return setState(world, this.room, x, y, this.orientation);
-	}
-	
-	public boolean goBack(World world){
-		int x = xPos;
-		int y = yPos;
-		
-		if(orientation == 'n') y--;
-		else if(orientation == 'e') x--;
-		else if(orientation == 's') y++;
-		else if(orientation == 'w') x++;
-		
-		return setState(world, this.room, x, y, this.orientation);
-	}
-	
-	public boolean goRight(World world){
-		int x = xPos;
-		int y = yPos;
-		
-		if(orientation == 'n') x++;
-		else if(orientation == 'e') y--;
-		else if(orientation == 's') x--;
-		else if(orientation == 'w') y++;
-		
-		return setState(world, this.room, x, y, this.orientation);
-	}
-	
-	public boolean goLeft(World world){
-		int x = xPos;
-		int y = yPos;
-		
-		if(orientation == 'n') x--;
-		else if(orientation == 'e') y++;
-		else if(orientation == 's') x++;
-		else if(orientation == 'w') y--;
-		
-		return setState(world, this.room, x, y, this.orientation);		
-	}
-	
-	public void beginDialog(Character c){
+	public void beginDialog(){
 		this.isInDialog = true;
-		this.currDialogPartner = c;
 	}
 	
 	public void endDialog(){
 		//Game.Get().shootEvent(0, currDialogPartner.getName());
 		this.isInDialog = false;
-		this.currDialogPartner = null;
-	}
-	
-	public Character getDialogPartner(){
-		return currDialogPartner;
 	}
 	
 	public boolean isInDialog(){
 		return this.isInDialog;
 	}
 	
-	public boolean addToInventory(Entity e){
+	public boolean addToInventory(Integer e){
 		if(inventory.contains(e))
 			return false;
 		return inventory.add(e);
 	}
 	
-	public boolean removeFromInventory(Entity e){
+	public boolean removeFromInventory(Integer e){
 		return inventory.remove(e);
 	}
 	
-	public int getX(){ return this.xPos; }
-	public int getY(){ return this.yPos; }
-	public int getRoom(){ return this.room; }
+	
+	/// Getter
+	public int getLocation(){ return this.location; }
 	public char getOrientation(){ return this.orientation; }
 }
