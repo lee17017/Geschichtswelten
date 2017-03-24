@@ -12,7 +12,7 @@ public class Player {
 	private boolean isInDialog;
 	
 	public Player(){
-		location = 0;
+		location = 9;
 		inventory = new ArrayList<>();
 		isInDialog = false;
 	}

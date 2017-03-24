@@ -31,7 +31,10 @@ public class Location {
 		locationMap.put(locationCounter, new Location(name, bildID, soundID, enterText, exitText, observeText));
 		return locationCounter++;
 	}
-	
+	public static int createLabyrinth(String name, int bildID, int soundID, String enterText, String exitText, String observeText){
+		locationMap.put(locationCounter, new LabyrinthField(name, bildID, soundID, enterText, exitText, observeText));
+		return locationCounter++;
+	}
 	public static void setDefaultCallback(int command, ICommandCallback callback){
 		defaultCommandCallbacksNoParams.put(command, callback);
 	}
@@ -86,7 +89,7 @@ public class Location {
 	
 	
 	// Constructor
-	private Location(String name, int bildID, int soundID, String enterText, String exitText, String observeText){
+	protected Location(String name, int bildID, int soundID, String enterText, String exitText, String observeText){
 		adjacentLocations = new HashMap<Integer, ArrayList<Integer>>();
 		adjacentLocationAttributes = new HashMap<Integer, ArrayList<Integer>>();
 		callbacks = new HashMap<Integer, HashMap<Integer, ICommandCallback>>();
@@ -136,6 +139,16 @@ public class Location {
 	}
 	
 	
+        public ICommandCallback getCallback(int command, int param)
+        {
+            	if(!callbacks.containsKey(command))
+			return null;
+                else if(!callbacks.get(command).containsKey(param))
+                        return null;
+                else 
+                    return callbacks.get(command).get(param);
+        }
+        
 	// Setter - Getter
 	public void setCallback(int command, int param, ICommandCallback callback){
 		if(!callbacks.containsKey(command))
