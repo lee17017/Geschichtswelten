@@ -151,12 +151,12 @@ public class World {
         int kasten = Location.createLocation("Kasten", 0, 0, "Du gehst zum Kasten.", "", "Der Kasten scheint eine Gegensprechanlage zu sein.");
         int einfahrt = Location.createLocation("Einfahrt", 0, 0, "In der Einfahrt stehend, siehst du vor dir das Anwesen der Grahams", "Du gehst die Einfahrt entlang, steigst eine kleine Treppe hoch.", "Jetzt da du dich hinter dem Zaun und den Hecken befindest, die den Besitz der Grahams umgeben, siehst du, dass das Schloss von einer großen Parkanlage umgeben ist. Links und rechts der Einfahrt führen kleine Wege zwischen farbenprächtigen Blumenbeeten und kleinen Sitzecken vorbei bis hinter das Anwesen.");
         int schlossTor = Location.createLocation("SchlossTor", 0, 0, "Nun stehst du direkt vor der Eingangstür des Schlosses.", "", "Die Haustür ist aus altersdunklem, massivem Holz gefertigt. In der Mitte der Tür hängt ein großer Türklopfer, der einem Löwen nachempfunden ist.");
-        int eingangsFlur = Location.createLocation("EingangsFlur", 1, 1, "Langsam gewöhnen sich deine Augen an das Halbdunkel im Inneren des Schlosses. Du befindest dich in einem schmalen, langen Raum, der zu einer weiteren Tür führt.", "", "Du befindest dich in einem schmalen, langen Raum, der zu einer weiteren Tür führt. Der Boden ist mit einem schweren Teppich ausgelegt. An den Wänden hängen etliche Gemälde, deren Motive im Schein der wenigen Leuchter schlecht zu erkennen sind.");
-        int tuerFlurEingang = Location.createLocation("Tür Flur Eingangshalle", 1, 1, "Du stehst jetzt direkt vor der Tür, die weiter hinein ins Schloss führt.", "", "Du stehst jetzt direkt vor der Tür, die weiter hinein ins Schloss führt.");
-        int eingangsHalle = Location.createLocation("Eingangshalle", 2, 2, "Du betritts die Eingangshalle", "", "Die Eingangshalle ist mit Marmorboden ausgelegt und wird von einem massiven, kristallenen Lüster dominiert, der in der Mitte des zweistöckigen Raumes hängt. Links und rechts führen zwei geschwungene Treppen zu einer Galerie im ersten Stock. Am Fuß jeder Treppe befindet sich jeweils eine Tür, die tiefer ins Erdgeschoss führt. Auf der Seite gegenüber der Tür zum Flur, befindet sich eine zweiflügelige Glastür, die offensichtlich in den Garten führt. ");
-        int garten = Location.createLocation("Garten", 0, 0, "Du betrittst den wunderschönen britischen Garten.", "", "Zu deiner rechten Seite siehst du einen Brunnen, zu deiner linken den Eingang zu einem Heckenlabyrinth. Dean, den Gärtner kannst du aber nicht entdecken.");
-        int brunnen = Location.createLocation("Brunnen", 0, 0, "Du gehst zum Brunnen.", "", "Der alte Brunnen besitzt eine Kurbel um den Eimer hinab in den Brunnen zu lassen und Wasser hoch zu holen. Der Eimer scheint sich gerade unten im Schacht zu befinden.");
-        int labyrinth = Location.createLabyrinth("Labyrinth", 0, 0, "Du gehst in das Heckenlabyrinth. Gerade als du beim Eingang ankommst, hörst du einen Schrei aus dem Labyrinth. Vielleicht solltest du nachschauen, was passiert ist?", "", "Du hast dich verlaufn. RIP");
+        int eingangsFlur = Location.createLocation("EingangsFlur", 1, 0, "Langsam gewöhnen sich deine Augen an das Halbdunkel im Inneren des Schlosses. Du befindest dich in einem schmalen, langen Raum, der zu einer weiteren Tür führt.", "", "Du befindest dich in einem schmalen, langen Raum, der zu einer weiteren Tür führt. Der Boden ist mit einem schweren Teppich ausgelegt. An den Wänden hängen etliche Gemälde, deren Motive im Schein der wenigen Leuchter schlecht zu erkennen sind.");
+        int tuerFlurEingang = Location.createLocation("Tür Flur Eingangshalle", 1, 0, "Du stehst jetzt direkt vor der Tür, die weiter hinein ins Schloss führt.", "", "Du stehst jetzt direkt vor der Tür, die weiter hinein ins Schloss führt.");
+        int eingangsHalle = Location.createLocation("Eingangshalle", 2, 0, "Du betritts die Eingangshalle", "", "Die Eingangshalle ist mit Marmorboden ausgelegt und wird von einem massiven, kristallenen Lüster dominiert, der in der Mitte des zweistöckigen Raumes hängt. Links und rechts führen zwei geschwungene Treppen zu einer Galerie im ersten Stock. Am Fuß jeder Treppe befindet sich jeweils eine Tür, die tiefer ins Erdgeschoss führt. Auf der Seite gegenüber der Tür zum Flur, befindet sich eine zweiflügelige Glastür, die offensichtlich in den Garten führt. ");
+        int garten = Location.createLocation("Garten", 3, 0, "Du betrittst den wunderschönen britischen Garten.", "", "Zu deiner rechten Seite siehst du einen Brunnen, zu deiner linken den Eingang zu einem Heckenlabyrinth. Dean, den Gärtner kannst du aber nicht entdecken.");
+        int brunnen = Location.createLocation("Brunnen", 4, 0, "Du gehst zum Brunnen.", "", "Der alte Brunnen besitzt eine Kurbel um den Eimer hinab in den Brunnen zu lassen und Wasser hoch zu holen. Der Eimer scheint sich gerade unten im Schacht zu befinden.");
+        int labyrinth = Location.createLabyrinth("Labyrinth", 5, 0, "Du gehst in das Heckenlabyrinth. Gerade als du beim Eingang ankommst, hörst du einen Schrei aus dem Labyrinth. Vielleicht solltest du nachschauen, was passiert ist?", "", "Du hast dich verlaufn. RIP");
 
         //Location.createLocation("", 0, 0, "", "", "");
         //#0 an der Straße
@@ -411,7 +411,7 @@ public class World {
         Location.getLocation(eingangsHalle).setEnterCallback(new Location.IEnterExitCallback() {
             public void callback(GUI gui, World world, Player player, Location location) {
 
-             //   Game.Get().getCharacterByPreName("viola").startDialog(gui, world, player);
+                Game.Get().getCharacterByPreName("scarlett").startDialog(gui, world, player);
                 Location.getLocation(eingangsHalle).setEnterCallback(new Location.IEnterExitCallback() {
                     public void callback(GUI gui, World world, Player player, Location location) {
 
@@ -421,40 +421,35 @@ public class World {
             }
 
         });
-        /*
-        
-        Location.getLocation(eingangsHalle).setCallback(1, 10, new Location.ICommandCallback() {
+
+        Location.getLocation(eingangsHalle).setCallback(1, 28, new Location.ICommandCallback() {
             public void callback(GUI gui, World world, Player player, Location location, int param, int attribute) {
-                gui.writeln("Ellito gespräch", 0, defaultDelay);
+                ArrayList<NPC> npcArr = Game.Get().getCharacters();
+
+                NPC npc = npcArr.get(2);
+
+                //---HIER HABE ICH WAS VERÄNDERT
+                npc.startDialog(gui, world, player);
             }
         });
-
-        Location.getLocation(eingangsHalle).setCallback(1, 11, new Location.ICommandCallback() {
-            public void callback(GUI gui, World world, Player player, Location location, int param, int attribute) {
-                gui.writeln("viola dialog", 0, defaultDelay);
-            }
-        });
-
-        Location.getLocation(eingangsHalle).setCallback(1, 12, new Location.ICommandCallback() {
-            public void callback(GUI gui, World world, Player player, Location location, int param, int attribute) {
-                gui.writeln("scarllet dialog", 0, defaultDelay);
-            }
-        });*/
-
         Location.getLocation(eingangsHalle).setCallback(0, 26, new Location.ICommandCallback() {
             public void callback(GUI gui, World world, Player player, Location location, int param, int attribute) {
                 gui.writeln("Du solltest wahrscheinlich nicht gleich am Anfang unaufgefordert im Schloss rumstöbern. Wenn du zu früh auffliegst, kannst du deinen Auftrag nicht abschließen.", 0, defaultDelay);
             }
         });
+
         Location.getLocation(eingangsHalle).setCallback(0, 1, new Location.ICommandCallback() {
             public void callback(GUI gui, World world, Player player, Location location, int param, int attribute) {
-                gui.writeln("Du gehst durch die Gartentür.", 0, defaultDelay);
-                player.setLocation(gui, world, garten);
+                gui.writeln("Du solltest erst mit den hier Leuten reden.", 0, defaultDelay);
             }
         });
-        Location.getLocation(eingangsHalle).setAdjacentLocation(garten, new int[]{13}, new int[]{});
-        //#9 Garten
+        Location.getLocation(eingangsHalle).setCallback(0, 13, new Location.ICommandCallback() {
+            public void callback(GUI gui, World world, Player player, Location location, int param, int attribute) {
+                gui.writeln("Du solltest erst mit den Leuten hier reden.", 0, defaultDelay);
+            }
+        });
 
+        //#9 Garten
         Location.getLocation(garten).setAdjacentLocation(eingangsHalle, new int[]{14}, new int[]{});
         Location.getLocation(garten).setAdjacentLocation(brunnen, new int[]{15}, new int[]{});
         Location.getLocation(garten).setAdjacentLocation(labyrinth, new int[]{16}, new int[]{});

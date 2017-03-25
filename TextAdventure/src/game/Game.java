@@ -42,7 +42,7 @@ public class Game {
 	private ArrayList<StoryText> storyTexts;
 	private boolean isWritingStoryText;
 	
-	
+        
 	private Game(){
 		isRunning = false;
 		events = new ArrayList<Event>();
@@ -70,7 +70,7 @@ public class Game {
 		addCharacter(NPC.initScarlett(12));
 		addCharacter(NPC.initViola(11));
 		addCharacter(NPC.initElliot(10));
-		addCharacter(NPC.initDean(28));
+		addCharacter(NPC.initDean(27));
 		gui.setInputMessage("Press Enter");
 		writeStoryText(GameResources.prolog_1_header, GameResources.prolog_1, new String[]{}, 35, 200);
 		writeStoryText("", GameResources.prolog_2, GameResources.prolog_2_prefixes, 35, 200);

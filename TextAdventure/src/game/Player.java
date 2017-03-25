@@ -14,7 +14,7 @@ public class Player {
 	
 	public Player(){
 		name = "Player";
-		location = 6;
+		location = 0;
 		inventory = new ArrayList<>();
 		isInDialog = false;
 	}

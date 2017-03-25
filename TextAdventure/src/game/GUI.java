@@ -134,7 +134,7 @@ public class GUI extends JFrame{
     
     private Image[] background;
  
-    final int anzBackgrounds = 4;
+    final int anzBackgrounds = 6;
     Thread outThread = new Output(this, "", 0, 0);
     JPanel input = new JPanel();
     JPanel output = new JPanel();
@@ -259,6 +259,7 @@ public class GUI extends JFrame{
     public void enableWriting(boolean b){
         if(b)
             jt.setHorizontalAlignment(JTextField.LEFT);
+            
     	jt.setEditable(b);
     }
     

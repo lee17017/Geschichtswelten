@@ -2,7 +2,7 @@ package game;
 
 import game.Dialog.DialogText;
 import world.World;
-
+import world.Location;
 public class GameResources {
 	
 	///--- Default Outputs
@@ -99,6 +99,10 @@ public class GameResources {
 		int tor_3 = torDialog.createDialogText("Du");
 		int tor_4 = torDialog.createDialogText("???");
 		
+                //Viola 1 Dialog
+		int viola_1 = viola1Dialog.createDialogText("Viola");
+		viola1Dialog.setCharacterText(viola_1, -1, "Scarlett wird sicher bald mit ihrem Vater zurückkehren.");
+                
 		torDialog.setCharacterText(tor_1, tor_2, "Hallo?");
 		torDialog.setCharacterText(tor_2, tor_3, "Guten Tag, ich bin... ");
 		
@@ -133,6 +137,7 @@ public class GameResources {
 			public void callback(GUI gui, World world, Player player, DialogText dialogText) {
 				gui.writeln("Kaum ist die Stimme aus der Gegensprechanlage verstummt, öffnet sich auch schon das Tor vor dir.", 0, 1000);
 				Game.Get().getCharacterByPreName("viola").setDialog(GameResources.viola1Dialog);
+                                System.out.println("asdf");
 			}
 		});
 		
@@ -168,9 +173,7 @@ public class GameResources {
 		
 		
 		
-		//Viola 1 Dialog
-		int viola_1 = viola1Dialog.createDialogText("Viola");
-		viola1Dialog.setCharacterText(viola_1, -1, "Scarlett wird sicher bald mit ihrem Vater zurückkehren.");
+		
 		
 		
 		
@@ -183,7 +186,7 @@ public class GameResources {
 				+ "Damit hast du jetzt schon Bekanntschaft mit fast allen Bewohnern des Schlosses gemacht. ");
 		elliot1Dialog.setCharacterText(elliot_2, elliot_3, "… Huh? Wen du noch nicht kennst? Das wäre wohl Dean, der Gärtner. Du solltest ihn draußen im Garten bei seinen Pflanzen finden.");
 		
-		elliot1Dialog.setCharacterText(elliot_2, -1, "Hmm… Es scheint doch länger zu dauern bis Edward zu uns stößt, es wäre also wahrscheinlich eine gute Idee, wenn du dich schon mal Dean vorstellst. "
+		elliot1Dialog.setCharacterText(elliot_3, -1, "Hmm… Es scheint doch länger zu dauern bis Edward zu uns stößt, es wäre also wahrscheinlich eine gute Idee, wenn du dich schon mal Dean vorstellst. "
 				+ "Ich geh mal nachschauen, wo die beide bleiben.");
 		
 		elliot1Dialog.setDialogTextCallback(new Dialog.IDialogCallback() {
@@ -192,8 +195,38 @@ public class GameResources {
 			public void callback(GUI gui, World world, Player player, DialogText dialogText) {
 				gui.writeln("Viola verlässt, wie auch schon Scarlett zuvor, den Raum über eine der Treppen. "
 						+ "Als du dich wieder umdrehst siehst du auch Elliot durch eine der Türen im Innern des Hauses verschwinden.", 0, 800);
-			}
-		}, elliot_2);
+		
+                        Location.getLocation(8).setCallback(1, 11, new Location.ICommandCallback() {
+            public void callback(GUI gui, World world, Player player, Location location, int param, int attribute) {
+               gui.writeln("Viola ist nicht in deiner Nähe.", 0, 200);
+            }
+        });
+
+        Location.getLocation(8).setCallback(1, 10, new Location.ICommandCallback() {
+            public void callback(GUI gui, World world, Player player, Location location, int param, int attribute) {
+                gui.writeln("Elliot ist nicht in deiner Nähe.", 0, 200);
+            }
+        });
+        Location.getLocation(8).setCallback(1, 28, new Location.ICommandCallback() {
+            public void callback(GUI gui, World world, Player player, Location location, int param, int attribute) {
+                gui.writeln("Elliot ist nicht in deiner Nähe.", 0, 200);
+            }
+        });
+          Location.getLocation(8).setCallback(0, 1, new Location.ICommandCallback() {
+            public void callback(GUI gui, World world, Player player, Location location, int param, int attribute) {
+                gui.writeln("Du gehst durch die Gartentür.", 0, 200);
+                player.setLocation(gui, world, 9);
+            }
+        });
+               Location.getLocation(8).setCallback(0, 13, new Location.ICommandCallback() {
+            public void callback(GUI gui, World world, Player player, Location location, int param, int attribute) {
+                player.setLocation(gui, world, 9);
+            }
+        });
+                        }
+                        
+                        
+		}, elliot_3);
 		
 		
 		

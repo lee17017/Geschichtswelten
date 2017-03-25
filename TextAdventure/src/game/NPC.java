@@ -22,21 +22,27 @@ public class NPC{
 		this.inDialog = false;
 	}
 
+        
+        
 	public void setDialog(Dialog dialog){
-		if(!inDialog)
+		//if(!inDialog)
 			currentDialog = dialog;
 	}
 	
 	public void startDialog(GUI gui, World world, Player player){
 		if(currentDialog == null)
-			return;
-		
+			return;/*
+		gui.enableWriting(false);
+                gui.setInputMessage("Press Enter");*/
 		player.beginDialog();
 		inDialog = true;
 		if(!currentDialog.writeCurrent(gui, world, player)){
 			currentDialog.end(gui, world, player);
 			player.endDialog();
 			inDialog = false;
+                        
+               /* gui.setInputMessage("");
+		gui.enableWriting(true);*/
 		}
 	}
 	
@@ -58,24 +64,29 @@ public class NPC{
 	/// Static Helper Functions
 	public static NPC initScarlett(int param){
 		NPC scarlett = new NPC("Scarlett", "Graham", param);
+                scarlett.location = 999;
+		scarlett.setDialog(GameResources.willkommensDialog);
 		return scarlett;
 	}
 	
 	public static NPC initViola(int param){
 		NPC viola = new NPC("Viola", "Rose", param);
 		viola.setDialog(GameResources.torDialog);
+                viola.location = 8;
 		return viola;
 	}
 	
 	public static NPC initElliot(int param){
 		NPC elliot = new NPC("Elliot", "Graham", param);
 		elliot.setDialog(GameResources.elliot1Dialog);
+                elliot.location = 8;
 		return elliot;
 	}
 	
 	public static NPC initDean(int param){
 		NPC dean = new NPC("Dean", "", param);
 		dean.setDialog(GameResources.dean1Dialog);
+                dean.location = 999;//nirgends
 		return dean;
 	}
 }

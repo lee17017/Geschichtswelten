@@ -63,10 +63,10 @@ public class Sound {
         if (bgmCur >=0 && bgmClip[bgmCur].isRunning()) {
             bgmClip[bgmCur].stop();
         }
-
-        bgmCur = track;
-        if(track < 0 || track >= bgmAnz)
+if(track < 0 || track >= bgmAnz)
             return;
+        bgmCur = track;
+        
         bgmClip[track].setFramePosition(0);
         bgmClip[track].loop(Clip.LOOP_CONTINUOUSLY);
     }
