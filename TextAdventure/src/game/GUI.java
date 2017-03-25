@@ -125,7 +125,7 @@ class ImagePanel extends JPanel{
         if(image != null)
         {
            
-            g.drawImage( image, 0, 0, getWidth(), getHeight(), this );
+            g.drawImage( image, getWidth()/2, 0, getWidth()/2, getHeight()*90/100, this );
         }
     }
 }
@@ -134,7 +134,7 @@ public class GUI extends JFrame{
     
     private Image[] background;
  
-    final int anzBackgrounds = 2;
+    final int anzBackgrounds = 4;
     Thread outThread = new Output(this, "", 0, 0);
     JPanel input = new JPanel();
     JPanel output = new JPanel();
@@ -177,18 +177,20 @@ public class GUI extends JFrame{
         text.setLineWrap(true);
         text.setOpaque(false);
         text.setBorder(BorderFactory.createEmptyBorder());
-        text.setFont(new Font("Arial", Font.PLAIN, 16));
+        
+        text.setFont(new Font("Arial", Font.PLAIN, 20));
         text.setForeground(Color.black);
-        jt.setFont(new Font("Arial", Font.PLAIN, 16));
-        jt.setPreferredSize(new Dimension(dim.width, 25));
+        text.setWrapStyleWord(true);
+        jt.setFont(new Font("Arial", Font.PLAIN, 20));
+        jt.setPreferredSize(new Dimension(dim.width/2, 25));
         input.setOpaque(false);
         input.add(jt);
         input.setBorder(BorderFactory.createEmptyBorder(0,0,10,0));//top, left, bottom, right
         add(input, BorderLayout.SOUTH);
-        
         output.setOpaque(false);
         output.setLayout(new BorderLayout(0,0));
-        output.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
+        
+        output.setBorder(BorderFactory.createEmptyBorder(20, 20, dim.height/10, dim.width/2+20));
         output.add(sp);
         add(output, BorderLayout.CENTER);
 
@@ -240,7 +242,7 @@ public class GUI extends JFrame{
         if(input=="")
             return;
         
-    	write("\n> "+input, waitTime, delay);
+    	write("\n\n> "+input, waitTime, delay);
     }
     
     public void setBg(int nmb)
@@ -253,7 +255,6 @@ public class GUI extends JFrame{
     {
         jt.setHorizontalAlignment(JTextField.CENTER);
         jt.setText(msg);
-        jt.setEditable(false);
     }
     public void enableWriting(boolean b){
         if(b)

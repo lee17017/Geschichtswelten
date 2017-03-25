@@ -15,8 +15,6 @@ public class World {
     public boolean Initialize() {
         int defaultDelay = 200;
 
-        ///--- Set default callbacks
-        /// gehen
         Location.setDefaultCallback(0, new Location.ICommandCallback() {
             @Override
             public void callback(GUI gui, World world, Player player, Location location, int param, int attribute) {
@@ -95,7 +93,9 @@ public class World {
                     return;
                 }
 
-                npc.startDialog(gui, player);
+                //---HIER HABE ICH WAS VERÄNDERT
+                npc.startDialog(gui, world, player);
+                //----
             }
         });
 
@@ -145,18 +145,18 @@ public class World {
             }
         });
 
-        int strasse = Location.createLocation("an der Straße", 0, 0, "Du gehst zurück zum Straßenrand.", "", "Du stehst vor einem hohen, gusseisernen Zaun inmitten dessen sich ein großes, schön verziertes Tor befindet. Gleich hinter dem Zaun versperren ordentlich zurecht gestutzte Hecken die Sicht auf das Grundstück, aber durch das Tor siehst du eine mit Kies bestreute Einfahrt die bis zur Haustür eines weitläufigen Herrenhauses führt. Das Backsteingebäude hat sicher bereits einige Jahrhunderte gesehen, ist aber trotzdem gut in Stand gehalten. Das muss das Schloss der Grahams sein.");
-        int torStrasse = Location.createLocation("Tor bei der Straße", 1, 1, "Du gehst näher an das Tor heran und schaust dich um. Du siehst neben dem Tor am Zaun einen kleinen Kasten hängen.", "", "Du siehst neben dem Tor am Zaun einen kleinen Kasten hängen.");
+        int strasse = Location.createLocation("an der Straße", 0, 0, "Du gehst zurück zum Straßenrand.", "", "Du stehst vor einem hohen, gusseisernen Zaun inmitten dessen sich ein großes, schön verziertes Tor befindet. Gleich hinter dem Zaun versperren ordentlich zurecht gestutzte Hecken die Sicht auf das Grundstück, aber durch das Tor siehst du eine mit Kies bestreute Einfahrt, die bis zur Haustür eines weitläufigen Herrenhauses führt. Das Backsteingebäude hat sicher bereits einige Jahrhunderte gesehen, ist aber trotzdem gut in Stand gehalten. Das muss das Schloss der Grahams sein.");
+        int torStrasse = Location.createLocation("Tor bei der Straße", 0, 0, "Du gehst näher an das Tor heran und schaust dich um. Du siehst neben dem Tor am Zaun einen kleinen Kasten hängen.", "", "Du siehst neben dem Tor am Zaun einen kleinen Kasten hängen.");
         int zaun = Location.createLocation("Zaun", 0, 0, "Du gehst zum Zaun. Du siehst einen einen kleinen Kasten am Zaun hängen.", "", "Du stehst beim Zaun. Du siehst einen einen kleinen Kasten am Zaun hängen.");
         int kasten = Location.createLocation("Kasten", 0, 0, "Du gehst zum Kasten.", "", "Der Kasten scheint eine Gegensprechanlage zu sein.");
-        int einfahrt = Location.createLocation("Einfahrt", 0, 0, "In der Einfahrt stehend, siehst du vor dir das Schloss.//ändern", "Du gehst die Einfahrt entlang, steigst eine kleine Treppe hoch.", "Jetzt da du dich hinter dem Zaun und den Hecken befindest, die den Besitz der Grahams umgeben, siehst du, dass das Schloss von einer großen Parkanlage umgeben ist. Links und rechts der Einfahrt führen kleine Wege zwischen farbenprächtigen Blumenbeeten und kleinen Sitzecken vorbei bis hinter das Anwesen.");
+        int einfahrt = Location.createLocation("Einfahrt", 0, 0, "In der Einfahrt stehend, siehst du vor dir das Anwesen der Grahams", "Du gehst die Einfahrt entlang, steigst eine kleine Treppe hoch.", "Jetzt da du dich hinter dem Zaun und den Hecken befindest, die den Besitz der Grahams umgeben, siehst du, dass das Schloss von einer großen Parkanlage umgeben ist. Links und rechts der Einfahrt führen kleine Wege zwischen farbenprächtigen Blumenbeeten und kleinen Sitzecken vorbei bis hinter das Anwesen.");
         int schlossTor = Location.createLocation("SchlossTor", 0, 0, "Nun stehst du direkt vor der Eingangstür des Schlosses.", "", "Die Haustür ist aus altersdunklem, massivem Holz gefertigt. In der Mitte der Tür hängt ein großer Türklopfer, der einem Löwen nachempfunden ist.");
-        int eingangsFlur = Location.createLocation("EingangsFlur", 0, 0, "Langsam gewöhnen sich deine Augen an das Halbdunkel im Inneren des Schlosses. Du befindest dich in einem schmalen, langen Raum, der zu einer weiteren Tür führt.", "", "Du befindest dich in einem schmalen, langen Raum, der zu einer weiteren Tür führt. Der Boden ist mit einem schweren Teppich ausgelegt. An den Wänden hängen etliche Gemälde, deren Motive im Schein der wenigen Leuchter schlecht zu erkennen sind.");
-        int tuerFlurEingang = Location.createLocation("Tür Flur Eingangshalle", 0, 0, "Du stehst jetzt direkt vor der Tür, die weiter hinein ins Schloss führt.", "", "Du stehst jetzt direkt vor der Tür, die weiter hinein ins Schloss führt.");
-        int eingangsHalle = Location.createLocation("Eingangshalle", 0, 0, "Du betritts die Eingangshalle", "", "3 leute stehen rum");
-        int garten = Location.createLocation("Garten", 0, 0, "Du betrittst den wunderschönen britischen Garten.", "", "Sie sehen einen wundervollen britischen Garten. Auf der linken Seite befindet sich ein Brunnen. Vor einer Hecke steht ein Mann mit einer Gartenschere. Auf der rechten Seite ist ein Heckenlabyrinth.");
-        int brunnen = Location.createLocation("Brunnen", 0, 0, "Du gehst zum Brunnen.", "", "Du stehst direkt vor einem mit Efeu bewachsenen Brunnen. Er besitzt eine Kurbel, um einen Eimer hoch zu ziehen.");
-        int labyrinth = Location.createLabyrinth("Labyrinth", 0, 0, "Du gehst in das Labyrinth", "", "Du hast dich verlaufn. RIP");
+        int eingangsFlur = Location.createLocation("EingangsFlur", 1, 1, "Langsam gewöhnen sich deine Augen an das Halbdunkel im Inneren des Schlosses. Du befindest dich in einem schmalen, langen Raum, der zu einer weiteren Tür führt.", "", "Du befindest dich in einem schmalen, langen Raum, der zu einer weiteren Tür führt. Der Boden ist mit einem schweren Teppich ausgelegt. An den Wänden hängen etliche Gemälde, deren Motive im Schein der wenigen Leuchter schlecht zu erkennen sind.");
+        int tuerFlurEingang = Location.createLocation("Tür Flur Eingangshalle", 1, 1, "Du stehst jetzt direkt vor der Tür, die weiter hinein ins Schloss führt.", "", "Du stehst jetzt direkt vor der Tür, die weiter hinein ins Schloss führt.");
+        int eingangsHalle = Location.createLocation("Eingangshalle", 2, 2, "Du betritts die Eingangshalle", "", "Die Eingangshalle ist mit Marmorboden ausgelegt und wird von einem massiven, kristallenen Lüster dominiert, der in der Mitte des zweistöckigen Raumes hängt. Links und rechts führen zwei geschwungene Treppen zu einer Galerie im ersten Stock. Am Fuß jeder Treppe befindet sich jeweils eine Tür, die tiefer ins Erdgeschoss führt. Auf der Seite gegenüber der Tür zum Flur, befindet sich eine zweiflügelige Glastür, die offensichtlich in den Garten führt. ");
+        int garten = Location.createLocation("Garten", 0, 0, "Du betrittst den wunderschönen britischen Garten.", "", "Zu deiner rechten Seite siehst du einen Brunnen, zu deiner linken den Eingang zu einem Heckenlabyrinth. Dean, den Gärtner kannst du aber nicht entdecken.");
+        int brunnen = Location.createLocation("Brunnen", 0, 0, "Du gehst zum Brunnen.", "", "Der alte Brunnen besitzt eine Kurbel um den Eimer hinab in den Brunnen zu lassen und Wasser hoch zu holen. Der Eimer scheint sich gerade unten im Schacht zu befinden.");
+        int labyrinth = Location.createLabyrinth("Labyrinth", 0, 0, "Du gehst in das Heckenlabyrinth. Gerade als du beim Eingang ankommst, hörst du einen Schrei aus dem Labyrinth. Vielleicht solltest du nachschauen, was passiert ist?", "", "Du hast dich verlaufn. RIP");
 
         //Location.createLocation("", 0, 0, "", "", "");
         //#0 an der Straße
@@ -165,9 +165,37 @@ public class World {
         Location.getLocation(strasse).setAdjacentLocation(zaun, new int[]{2}, new int[]{});
         Location.getLocation(strasse).setAdjacentLocation(kasten, new int[]{3}, new int[]{});
 
+        Location.getLocation(strasse).setCallback(0, 5, new Location.ICommandCallback() {
+            public void callback(GUI gui, World world, Player player, Location location, int param, int attribute) {
+                player.setLocation(gui, world, torStrasse);
+                gui.writeln("Das Tor ist verschlossen, du kannst nicht zum Schloss gehen.", 0, defaultDelay);
+            }
+        });
         Location.getLocation(strasse).setCallback(0, 4, new Location.ICommandCallback() {
             public void callback(GUI gui, World world, Player player, Location location, int param, int attribute) {
+                player.setLocation(gui, world, torStrasse);
                 gui.writeln("Das Tor ist verschlossen, du kannst nicht zur Einfahrt gehen.", 0, defaultDelay);
+            }
+        });
+
+        Location.getLocation(strasse).setCallback(5, 24, new Location.ICommandCallback() {
+            public void callback(GUI gui, World world, Player player, Location location, int param, int attribute) {
+                gui.writeln("Du hörst wie der Taxifahrer sein Auto startet. Als du dich umdrehst, siehst du das Auto inmitten der wunderschönen Landschaft der Highlands in Richtung Edinburgh davonfahren. Sieht so aus als wärst jetzt auf dich allein gestellt.", 0, defaultDelay);
+                Location.getLocation(strasse).setCallback(5, 24, new Location.ICommandCallback() {
+                    public void callback(GUI gui, World world, Player player, Location location, int param, int attribute) {
+                        gui.writeln("Die Straße ist leer und es gibt auch sonst nichts Auffälliges zu sehen. Rund um das Schloss der Grahams erstreckt sich soweit das Auge reicht nur Weideland, gelegentlich durchbrochen von steilen Klippen oder kleinen Seen. Der Wind trägt die Geräusche einer in der Nähe grasenden Herde Schafe zu dir.", 0, defaultDelay);
+                    }
+                });
+            }
+        });
+        Location.getLocation(strasse).setExitCallback(new Location.IEnterExitCallback() {
+            public void callback(GUI gui, World world, Player player, Location location) {
+
+                Location.getLocation(strasse).setCallback(5, 24, new Location.ICommandCallback() {
+                    public void callback(GUI gui, World world, Player player, Location location, int param, int attribute) {
+                        gui.writeln("Die Straße ist leer und es gibt auch sonst nichts Auffälliges zu sehen. Rund um das Schloss der Grahams erstreckt sich soweit das Auge reicht nur Weideland, gelegentlich durchbrochen von steilen Klippen oder kleinen Seen. Der Wind trägt die Geräusche einer in der Nähe grasenden Herde Schafe zu dir.", 0, defaultDelay);
+                    }
+                });
             }
         });
 
@@ -179,6 +207,17 @@ public class World {
         Location.getLocation(torStrasse).setCallback(0, 4, new Location.ICommandCallback() {
             public void callback(GUI gui, World world, Player player, Location location, int param, int attribute) {
                 gui.writeln("Das Tor ist verschlossen, du kannst nicht zur Einfahrt gehen.", 0, defaultDelay);
+            }
+        });
+        Location.getLocation(torStrasse).setCallback(3, 3, new Location.ICommandCallback() {
+            public void callback(GUI gui, World world, Player player, Location location, int param, int attribute) {
+                gui.writeln("Du kannst den Kasten nicht öffnen.", 0, defaultDelay);
+            }
+        });
+
+        Location.getLocation(torStrasse).setCallback(3, 1, new Location.ICommandCallback() {
+            public void callback(GUI gui, World world, Player player, Location location, int param, int attribute) {
+                gui.writeln("Du kannst das Tor nicht öffnen.", 0, defaultDelay);
             }
         });
 
@@ -195,6 +234,7 @@ public class World {
                 Location.getLocation(kasten).getCallback(4, 3).callback(gui, world, player, location, param, attribute);
             }
         });
+
         //#2 Zaun
         Location.getLocation(zaun).setAdjacentLocation(strasse, new int[]{0}, new int[]{});
         Location.getLocation(zaun).setAdjacentLocation(torStrasse, new int[]{1}, new int[]{});
@@ -219,6 +259,16 @@ public class World {
         Location.getLocation(kasten).setAdjacentLocation(torStrasse, new int[]{1}, new int[]{});
         Location.getLocation(kasten).setAdjacentLocation(zaun, new int[]{2}, new int[]{});
 
+        Location.getLocation(kasten).setCallback(3, 3, new Location.ICommandCallback() {
+            public void callback(GUI gui, World world, Player player, Location location, int param, int attribute) {
+                gui.writeln("Du kannst den Kasten nicht öffnen.", 0, defaultDelay);
+            }
+        });
+        Location.getLocation(kasten).setCallback(1, 3, new Location.ICommandCallback() {
+            public void callback(GUI gui, World world, Player player, Location location, int param, int attribute) {
+                gui.writeln("Keine Antwort... Vielleicht solltest du zuerst klingeln.", 0, defaultDelay);
+            }
+        });
         Location.getLocation(kasten).setCallback(new int[]{4, 7, 8}, 3, new Location.ICommandCallback() {
             public void callback(GUI gui, World world, Player player, Location location, int param, int attribute) {
                 gui.writeln("Du drückst auf die vermeintliche Klingel.", 0, defaultDelay);
@@ -230,10 +280,9 @@ public class World {
                         gui.writeln("Du drückst noch einmal auf die Klingel.", 0, defaultDelay);
                         gui.writeln(". . .", 500, 100);
                         gui.writeln("Nach einigen Sekunden ertönt tatsächlich eine Stimme aus der Anlage.", 0, 500);
-
-                        gui.writeln("DialogStuff - Kaum ist die Stimme aus der Gegensprechanlage verstummt, öffnet sich auch schon das Tor vor dir.", 0, defaultDelay);
+                        Game.Get().getCharacterByPreName("viola").startDialog(gui, world, player);
                         //stuff happening
-                        Location.getLocation(torStrasse).setEnterText("Das Tor ist nun offen, du kannst zur Einfahrt gehen.");
+                        Location.getLocation(torStrasse).setEnterText("");
 
                         Location.getLocation(strasse).setCallback(0, 4, new Location.ICommandCallback() {
                             public void callback(GUI gui, World world, Player player, Location location, int param, int attribute) {
@@ -242,8 +291,16 @@ public class World {
                             }
 
                         });
-                        Location.getLocation(torStrasse).setCallback(0, 4, new Location.ICommandCallback() {
-                            public void callback(GUI gui, World world, Player player, Location location, int param, int attribute) {
+                        for (int i = 0; i < 4; i++) {
+                            Location.getLocation(i).setCallback(0, 4, new Location.ICommandCallback() {
+                                public void callback(GUI gui, World world, Player player, Location location, int param, int attribute) {
+                                    player.setLocation(gui, world, torStrasse);
+                                }
+                            });
+                        }
+
+                        Location.getLocation(torStrasse).setEnterCallback(new Location.IEnterExitCallback() {
+                            public void callback(GUI gui, World world, Player player, Location location) {
                                 gui.writeln("Du durchschreitest eilig das große Tor, das sich auch gleich hinter dir wieder fest verschließt.", 0, defaultDelay);
                                 player.setLocation(gui, world, einfahrt);
                             }
@@ -265,10 +322,16 @@ public class World {
 
         //#4 Einfahrt
         Location.getLocation(einfahrt).setAdjacentLocation(schlossTor, new int[]{5}, new int[]{});
-
-        Location.getLocation(einfahrt).setCallback(0, 1, new Location.ICommandCallback() {
+        for (int i = 0; i < 4; i++) {
+            Location.getLocation(einfahrt).setCallback(0, i, new Location.ICommandCallback() {
+                public void callback(GUI gui, World world, Player player, Location location, int param, int attribute) {
+                    gui.writeln("Das Tor ist verschlossen.", 0, defaultDelay);
+                }
+            });
+        }
+        Location.getLocation(einfahrt).setCallback(new int[]{0, 6}, 25, new Location.ICommandCallback() {
             public void callback(GUI gui, World world, Player player, Location location, int param, int attribute) {
-                gui.writeln("Das Tor ist verschlossen.", 0, defaultDelay);
+                gui.writeln("Ich sollte zur Eingangshalle gehen.", 0, defaultDelay);
             }
         });
         Location.getLocation(einfahrt).setCallback(5, 5, new Location.ICommandCallback() {
@@ -278,7 +341,7 @@ public class World {
         });
         Location.getLocation(einfahrt).setCallback(new int[]{0, 5}, 6, new Location.ICommandCallback() {
             public void callback(GUI gui, World world, Player player, Location location, int param, int attribute) {
-                gui.writeln("Wunderschöne Blumen", 0, defaultDelay);
+                gui.writeln("Die Blumenbeete umfassen eine Vielzahl verschiedener Blumen in allen Farben, deren lieblicher Duft einige Schmetterlinge angelockt hat. Wer auch immer sich um diese Beete kümmert, muss ein begnadeter Gärtner sein", 0, defaultDelay);
             }
         });
 
@@ -324,7 +387,7 @@ public class World {
         Location.getLocation(eingangsFlur).setAdjacentLocation(tuerFlurEingang, new int[]{1}, new int[]{});
         Location.getLocation(eingangsFlur).setCallback(5, 8, new Location.ICommandCallback() {
             public void callback(GUI gui, World world, Player player, Location location, int param, int attribute) {
-                gui.writeln("Du erkennst auf den Gemälden den Hausherren Edward Graham und seine Tochter Scarlett Graham.", 0, defaultDelay);
+                gui.writeln("Du gehst näher heran und schaust dir die Gemälde genauer an. Bei den meisten scheint es sich um Familienfotos zu handeln. Ein Hochzeitfoto sticht dir ins Auge und du glaubst zu erkennen, dass es sich bei dem Mann um den Hausherrn Edward Graham handelt. Die rothaarige Frau an seiner Seite erkennst du hingegen nicht.", 0, defaultDelay);
             }
         });
 
@@ -345,6 +408,21 @@ public class World {
             }
         });
 
+        Location.getLocation(eingangsHalle).setEnterCallback(new Location.IEnterExitCallback() {
+            public void callback(GUI gui, World world, Player player, Location location) {
+
+             //   Game.Get().getCharacterByPreName("viola").startDialog(gui, world, player);
+                Location.getLocation(eingangsHalle).setEnterCallback(new Location.IEnterExitCallback() {
+                    public void callback(GUI gui, World world, Player player, Location location) {
+
+                    }
+
+                });
+            }
+
+        });
+        /*
+        
         Location.getLocation(eingangsHalle).setCallback(1, 10, new Location.ICommandCallback() {
             public void callback(GUI gui, World world, Player player, Location location, int param, int attribute) {
                 gui.writeln("Ellito gespräch", 0, defaultDelay);
@@ -361,8 +439,19 @@ public class World {
             public void callback(GUI gui, World world, Player player, Location location, int param, int attribute) {
                 gui.writeln("scarllet dialog", 0, defaultDelay);
             }
-        });
+        });*/
 
+        Location.getLocation(eingangsHalle).setCallback(0, 26, new Location.ICommandCallback() {
+            public void callback(GUI gui, World world, Player player, Location location, int param, int attribute) {
+                gui.writeln("Du solltest wahrscheinlich nicht gleich am Anfang unaufgefordert im Schloss rumstöbern. Wenn du zu früh auffliegst, kannst du deinen Auftrag nicht abschließen.", 0, defaultDelay);
+            }
+        });
+        Location.getLocation(eingangsHalle).setCallback(0, 1, new Location.ICommandCallback() {
+            public void callback(GUI gui, World world, Player player, Location location, int param, int attribute) {
+                gui.writeln("Du gehst durch die Gartentür.", 0, defaultDelay);
+                player.setLocation(gui, world, garten);
+            }
+        });
         Location.getLocation(eingangsHalle).setAdjacentLocation(garten, new int[]{13}, new int[]{});
         //#9 Garten
 
@@ -370,14 +459,161 @@ public class World {
         Location.getLocation(garten).setAdjacentLocation(brunnen, new int[]{15}, new int[]{});
         Location.getLocation(garten).setAdjacentLocation(labyrinth, new int[]{16}, new int[]{});
 
+        Location.getLocation(garten).setCallback(0, 14, new Location.ICommandCallback() {
+            public void callback(GUI gui, World world, Player player, Location location, int param, int attribute) {
+                gui.writeln("Du solltest zuerst mit Dean sprechen.", 0, defaultDelay);
+            }
+        });
+
+        Location.getLocation(garten).setCallback(0, 5, new Location.ICommandCallback() {
+            public void callback(GUI gui, World world, Player player, Location location, int param, int attribute) {
+                gui.writeln("Du solltest zuerst mit Dean sprechen.", 0, defaultDelay);
+            }
+        });
+
+        Location.getLocation(garten).setCallback(0, 18, new Location.ICommandCallback() {
+            public void callback(GUI gui, World world, Player player, Location location, int param, int attribute) {
+                player.setLocation(gui, world, brunnen);
+            }
+        });
+        Location.getLocation(garten).setCallback(0, 17, new Location.ICommandCallback() {
+            public void callback(GUI gui, World world, Player player, Location location, int param, int attribute) {
+                player.setLocation(gui, world, labyrinth);
+            }
+        });
+
         //#10 Brunen
         Location.getLocation(brunnen).setAdjacentLocation(garten, new int[]{13}, new int[]{});
         Location.getLocation(brunnen).setAdjacentLocation(labyrinth, new int[]{16}, new int[]{});
 
+        Location.getLocation(brunnen).setCallback(13, 23, new Location.ICommandCallback() {
+            public void callback(GUI gui, World world, Player player, Location location, int param, int attribute) {
+                Location.getLocation(brunnen).getCallback(12, 22).callback(gui, world, player, location, param, attribute);
+            }
+        });
+
+        Location.getLocation(brunnen).setCallback(new int[]{11, 4}, 21, new Location.ICommandCallback() {
+            public void callback(GUI gui, World world, Player player, Location location, int param, int attribute) {
+
+                gui.writeln("Du drehst an der Kurbel, das Seil wickelt sich auf und schließlich kommt tatsächlich der Eimer zum Vorschein. Du stellst ihn am Brunnenrand ab.", 0, defaultDelay);
+
+                Location.getLocation(brunnen).setObserveText("Der alte Brunnen besitzt eine Kurbel um den Eimer hinab in den Brunnen zu lassen und Wasser hoch zu holen. Der Eimer steht am Brunnenrand.");
+
+                Location.getLocation(brunnen).setCallback(new int[]{11, 4}, 21, new Location.ICommandCallback() {
+                    public void callback(GUI gui, World world, Player player, Location location, int param, int attribute) {
+                        gui.writeln("Du hast den Eimer bereits hochgezogen.", 0, defaultDelay);
+                    }
+                });
+
+                Location.getLocation(brunnen).setCallback(5, 22, new Location.ICommandCallback() {
+                    public void callback(GUI gui, World world, Player player, Location location, int param, int attribute) {
+                        gui.writeln("Wie zu erwarten ist der Eimer mit Wasser gefüllt. Allerdings siehst du auch etwas Metallenes am Grund schimmern.", 0, defaultDelay);
+                    }
+                });
+
+                Location.getLocation(brunnen).setCallback(12, 22, new Location.ICommandCallback() {
+                    public void callback(GUI gui, World world, Player player, Location location, int param, int attribute) {
+                        gui.writeln("Du leerst den Eimer und es stellt sich heraus, dass das glitzernde Objekt ein Amulett ist.", 0, defaultDelay);
+                        gui.writeln("Du nimmst das Amulett und öffnest es. Im Amulett findest ein Foto von einer rothaarigen Frau, die verblüffende Ähnlichkeit mit Scarlett hat. Da das Foto so gut erhalten ist, kann das Amulett noch nicht lange im Brunnen gelegen haben.", 0, defaultDelay);
+
+                        Location.getLocation(brunnen).setCallback(10, 22, new Location.ICommandCallback() {
+                            public void callback(GUI gui, World world, Player player, Location location, int param, int attribute) {
+                                gui.writeln("Das Amulett ist nicht mehr im Eimer.", 0, defaultDelay);
+                            }
+                        });
+
+                        Location.getLocation(brunnen).setCallback(12, 22, new Location.ICommandCallback() {
+                            public void callback(GUI gui, World world, Player player, Location location, int param, int attribute) {
+                                gui.writeln("Der Eimer ist bereits leer.", 0, defaultDelay);
+                            }
+                        });
+
+                        Location.getLocation(brunnen).setCallback(5, 22, new Location.ICommandCallback() {
+                            public void callback(GUI gui, World world, Player player, Location location, int param, int attribute) {
+                                gui.writeln("Ein leerer Eimer.", 0, defaultDelay);
+                            }
+                        });
+                        Location.getLocation(brunnen).setCallback(new int[]{2, 3, 4, 5, 11}, 23, new Location.ICommandCallback() {
+                            public void callback(GUI gui, World world, Player player, Location location, int param, int attribute) {
+                                gui.writeln("Du nimmst das Amulett und öffnest es. Im Amulett findest ein Foto von einer rothaarigen Frau, die verblüffende Ähnlichkeit mit Scarlett hat. Da das Foto so gut erhalten ist, kann das Amulett noch nicht lange im Brunnen gelegen haben.", 0, defaultDelay);
+                            }
+                        });
+
+                    }
+                });
+                Location.getLocation(brunnen).setCallback(13, 23, new Location.ICommandCallback() {
+                    public void callback(GUI gui, World world, Player player, Location location, int param, int attribute) {
+                        Location.getLocation(brunnen).getCallback(12, 22).callback(gui, world, player, location, param, attribute);
+                    }
+                });
+                Location.getLocation(brunnen).setCallback(10, 22, new Location.ICommandCallback() {
+                    public void callback(GUI gui, World world, Player player, Location location, int param, int attribute) {
+                        gui.writeln("Du greifst in den Eimer rein und greifst nach dem Gegenstand aus Metall. Nach dem du es aus dem Wasser geholt hast, siehst du, dass es sich um ein Amulett handelt.", 0, defaultDelay);
+                        gui.writeln("Du nimmst das Amulett und öffnest es. Im Amulett findest ein Foto von einer rothaarigen Frau, die verblüffende Ähnlichkeit mit Scarlett hat. Da das Foto so gut erhalten ist, kann das Amulett noch nicht lange im Brunnen gelegen haben.", 0, defaultDelay);
+
+                        Location.getLocation(brunnen).setCallback(10, 22, new Location.ICommandCallback() {
+                            public void callback(GUI gui, World world, Player player, Location location, int param, int attribute) {
+                                gui.writeln("Das Amulett ist nicht mehr im Eimer.", 0, defaultDelay);
+                            }
+                        });
+
+                        Location.getLocation(brunnen).setCallback(12, 22, new Location.ICommandCallback() {
+                            public void callback(GUI gui, World world, Player player, Location location, int param, int attribute) {
+                                gui.writeln("Du hast keinen Grund den Eimer zu leeren.", 0, defaultDelay);
+                            }
+                        });
+
+                        Location.getLocation(brunnen).setCallback(5, 22, new Location.ICommandCallback() {
+                            public void callback(GUI gui, World world, Player player, Location location, int param, int attribute) {
+                                gui.writeln("Ein mit Wasser gefüllter Eimer.", 0, defaultDelay);
+                            }
+                        });
+                        Location.getLocation(brunnen).setCallback(new int[]{2, 3, 4, 5, 11}, 23, new Location.ICommandCallback() {
+                            public void callback(GUI gui, World world, Player player, Location location, int param, int attribute) {
+                                gui.writeln("Du nimmst das Amulett und öffnest es. Im Amulett findest ein Foto von einer rothaarigen Frau, die verblüffende Ähnlichkeit mit Scarlett hat. Da das Foto so gut erhalten ist, kann das Amulett noch nicht lange im Brunnen gelegen haben.", 0, defaultDelay);
+                            }
+                        });
+                    }
+                });
+                Location.getLocation(brunnen).setCallback(new int[]{2, 10}, 23, new Location.ICommandCallback() {
+                    public void callback(GUI gui, World world, Player player, Location location, int param, int attribute) {
+                        Location.getLocation(brunnen).getCallback(10, 22).callback(gui, world, player, location, param, attribute);
+                    }
+                });
+                Location.getLocation(brunnen).setCallback(2, 22, new Location.ICommandCallback() {
+                    public void callback(GUI gui, World world, Player player, Location location, int param, int attribute) {
+                        gui.writeln("Du hast keinen Grund einen Eimer mit dir zuführen .", 0, defaultDelay);
+                    }
+                });
+            }
+        });
+
+        Location.getLocation(brunnen).setCallback(2, 22, new Location.ICommandCallback() {
+            public void callback(GUI gui, World world, Player player, Location location, int param, int attribute) {
+                Location.getLocation(brunnen).getCallback(4, 21).callback(gui, world, player, location, param, attribute);
+            }
+        });
+
         //#11 Labyrinth
         LabyrinthField labyrinthL = (LabyrinthField) Location.getLocation(labyrinth);
-        labyrinthL.setAdjacentLocation(garten, new int[]{13}, new int[]{});
-        labyrinthL.setAdjacentLocation(brunnen, new int[]{15}, new int[]{});
+
+        labyrinthL.setCallback(0, 16, new Location.ICommandCallback() {
+            public void callback(GUI gui, World world, Player player, Location location, int param, int attribute) {
+                labyrinthL.printMoves(gui, world, player);
+            }
+        });
+
+        labyrinthL.setCallback(0, 13, new Location.ICommandCallback() {
+            public void callback(GUI gui, World world, Player player, Location location, int param, int attribute) {
+                gui.writeln("Vielleicht solltest du nachschauen, was passiert ist?", 0, defaultDelay);
+            }
+        });
+
+        labyrinthL.setCallback(0, 15, new Location.ICommandCallback() {
+            public void callback(GUI gui, World world, Player player, Location location, int param, int attribute) {
+                gui.writeln("Vielleicht solltest du nachschauen, was passiert ist?", 0, defaultDelay);
+            }
+        });
 
         labyrinthL.setCallback(5, -1, new Location.ICommandCallback() {
             public void callback(GUI gui, World world, Player player, Location location, int param, int attribute) {
@@ -385,7 +621,6 @@ public class World {
             }
         });
 
-        
         labyrinthL.setCallback(0, 17, new Location.ICommandCallback() {
             public void callback(GUI gui, World world, Player player, Location location, int param, int attribute) {
 
@@ -401,6 +636,10 @@ public class World {
 
         labyrinthL.setCallback(0, 18, new Location.ICommandCallback() {
             public void callback(GUI gui, World world, Player player, Location location, int param, int attribute) {
+                if (labyrinthL.getPos() == 45) {
+                    gui.writeln("Dies ist der Weg zum Garten. Vielleicht solltest du nachschauen, was passiert ist?", 0, defaultDelay);
+                    return;
+                }
 
                 if ((labyrinthL.getMoves() & 4) != 0) {
                     labyrinthL.setPos(labyrinthL.getPos() + 1);
@@ -411,7 +650,7 @@ public class World {
 
             }
         });
-        
+
         labyrinthL.setCallback(0, 19, new Location.ICommandCallback() {
             public void callback(GUI gui, World world, Player player, Location location, int param, int attribute) {
 
@@ -438,8 +677,6 @@ public class World {
             }
         });
 
-
-        ((LabyrinthField) Location.getLocation(labyrinth)).getPos();
         return true;
     }
 }

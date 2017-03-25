@@ -3,7 +3,7 @@ tor tuer tür pforte
 zaun
 kasten klingel anlage
 einfahrt
-schloss schloß anwesen
+schloss schloß anwesen gebäude gebaeude haus
 blumen beet
 klopfer löwe loewe
 gemäld gemaeld bild
@@ -19,3 +19,10 @@ links
 rechts
 oben
 unten
+kurbel
+eimer
+grund metall glitzer medallion medalion wasser amulett
+zurück zurueck
+park weg sitzeck
+erdgeschoß erdgeschoss galerie erster_Stock treppe
+dean

@@ -12,12 +12,31 @@ public class Game {
 	private GUI gui;
 	
 	private ArrayList<Event> events;
+	
+	public interface IInputCallback{
+		public boolean callback(GUI gui, World world, Player player, String input);
+	};
+	private class InputCallback{
+		public boolean hasInput = false;
+		public IInputCallback callback;
+		public String input;
+		public InputCallback(IInputCallback cb){
+			hasInput = false;
+			callback = cb;
+		}
+	};
+	
+	private ArrayList<InputCallback> inputCallbacks;
+	
 	private World world;
 	private Player player;
 	private HashMap<Integer, NPC> npcs;
+	private int npcCount = 0;
 	
 	private class StoryText{
 		public int wait, delay, currIdx = 0;
+		public String header;
+		public String[] prefixes;
 		public String[] text;
 	};
 	private ArrayList<StoryText> storyTexts;
@@ -27,9 +46,11 @@ public class Game {
 	private Game(){
 		isRunning = false;
 		events = new ArrayList<Event>();
+		inputCallbacks = new ArrayList<InputCallback>();
 		world = new World();
 		player = new Player();
 		npcs = new HashMap<Integer, NPC>();
+		npcCount = 0;
 		storyTexts = new ArrayList<>();
 		isWritingStoryText = false;
 	}
@@ -38,11 +59,21 @@ public class Game {
 	 * GAME LOGIC
 	 */
 	public void Start(){
+		GameResources.init();
+		
 		if(!world.Initialize())
 			return;
 		if(!player.Initialize())
 			return;
-		
+
+		//TODO: füg die richtigen params hinzu
+		addCharacter(NPC.initScarlett(12));
+		addCharacter(NPC.initViola(11));
+		addCharacter(NPC.initElliot(10));
+		addCharacter(NPC.initDean(28));
+		gui.setInputMessage("Press Enter");
+		writeStoryText(GameResources.prolog_1_header, GameResources.prolog_1, new String[]{}, 35, 200);
+		writeStoryText("", GameResources.prolog_2, GameResources.prolog_2_prefixes, 35, 200);
 		isRunning = true;
 		Run();
 	}
@@ -50,10 +81,20 @@ public class Game {
 	public void Run(){
 		while(isRunning){
 			synchronized(this){
+				if(inputCallbacks.size() > 0){
+					for(int i = inputCallbacks.size()-1; i >= 0; --i){
+						if(inputCallbacks.get(i).hasInput){
+							if( inputCallbacks.get(i).callback.callback(gui, world, player, inputCallbacks.get(i).input) )
+								inputCallbacks.remove(i);
+						}
+					}
+				}
+				
 				if(!gui.stillWriting() && isWritingStoryText && storyTexts.get(0).currIdx >= storyTexts.get(0).text.length)
 					storyTexts.remove(0);
 				
 				if(storyTexts.isEmpty() && isWritingStoryText){
+                                        gui.setInputMessage("");
 					gui.enableWriting(true);
 					isWritingStoryText = false;
 				}
@@ -73,30 +114,48 @@ public class Game {
 							gui.forceWrite(false);
 						else if(!gui.stillWriting() && isWritingStoryText){
 							StoryText st = storyTexts.get(0);
-							if(st.currIdx < st.text.length)
-								gui.writeln(st.text[st.currIdx++], st.wait, st.delay);
+							if(st.currIdx < st.text.length){
+								if(st.prefixes.length > st.currIdx && !st.prefixes[st.currIdx].equals("")){
+									gui.writeln(st.prefixes[st.currIdx], 0, 200);
+									gui.write(st.text[st.currIdx++], st.wait, st.delay);
+								}
+								else{
+									gui.writeln(st.text[st.currIdx++], st.wait, st.delay);
+								}
+							}
 						}
+						else if(!gui.stillWriting() && !isWritingStoryText && player.isInDialog())
+							addEvent(3, new String[]{""});
 					}
 					
-					else if(e.type == 2 && e.params.length > 2){
+					else if(e.type == 2 && e.params.length >= 4){
 						int wait;
 						int delay;
+						int prefixSize;
 						
 						try{
 							wait = Integer.parseInt(e.params[0]);
 							delay = Integer.parseInt(e.params[1]);
+							prefixSize = Integer.parseInt(e.params[3]);
 						} catch(NumberFormatException ex){ return; }
 						
 						StoryText st = new StoryText();
 						st.wait = wait;
 						st.delay = delay;
-						st.text = new String[e.params.length-2];
+						st.header = e.params[2];
+						st.prefixes = new String[prefixSize];
+						st.text = new String[e.params.length-(4+prefixSize)];
+
+						for(int j = 0; j < prefixSize; ++j)
+							st.prefixes[j] = e.params[j+4];
 						
-						for(int i = 2; i < e.params.length; ++i)
-							st.text[i-2] = e.params[i];
+						for(int i = 0; i < st.text.length; ++i)
+							st.text[i] = e.params[i+4+prefixSize];
+						
 						
 						storyTexts.add(st);
 						
+						gui.writeln(st.header, 0, 200);
 						gui.enableWriting(false);
 						isWritingStoryText = true;
 					}
@@ -111,13 +170,21 @@ public class Game {
 		}
 	}
 	
-	public void OnInput(String input){
-		if(input.equals("") || isWritingStoryText){
-			addEvent(1, new String[0]);
+	public void OnInput(String input){//System.out.println(input);
+		if(inputCallbacks.size() > 0){
+			for(int i = 0; i < inputCallbacks.size(); ++i){
+				inputCallbacks.get(i).input = input;
+				inputCallbacks.get(i).hasInput = true;
+			}
 			return;
 		}
 		
-		if(player.isInDialog()){
+		if(isWritingStoryText || input.equals("")){
+			if(input.equals("")) addEvent(1, new String[0]);
+			return;
+		}
+		
+		if(player.isInDialog()){System.out.println("dafuq");
 			String[] inp = new String[1];
 			inp[0] = input;
 			addEvent(3, inp);
@@ -149,17 +216,37 @@ public class Game {
         }).start();
 	}
 	
-	public void writeStoryText(String[] text, int waitTime, int delay){
-		String[] params = new String[text.length+2];
+	public void addInputCallback(IInputCallback callback){
+        new Thread(new Runnable() {
+            public void run(){
+            	synchronized(Game.Get()) {
+            		if(inputCallbacks != null)
+            			inputCallbacks.add(new InputCallback(callback));
+            	}
+            }
+        }).start();
+	}
+	
+	public void writeStoryText(String header, String[] text, String[] prefixes, int waitTime, int delay){
+		String[] params = new String[text.length+prefixes.length+4];
 		params[0] = ""+waitTime;
 		params[1] = ""+delay;
-		for(int i = 0; i < params.length; ++i)
-			params[i+2] = text[i];
+		params[2] = header;
+		params[3] = ""+prefixes.length;
+		for(int j = 0; j < prefixes.length; ++j)
+			params[j+4] = prefixes[j];
+		
+		for(int i = 0; i < text.length; ++i)
+			params[i+4+prefixes.length] = text[i];
 		
 		addEvent(2, params);
 	}
 	
 	// Characters
+	public void addCharacter(NPC character){
+		npcs.put(npcCount++, character);
+	}
+	
 	public ArrayList<NPC> getCharacters(){
 		return new ArrayList<NPC>(npcs.values());
 	}
@@ -168,7 +255,7 @@ public class Game {
 		ArrayList<NPC> npcArr = getCharacters();
 		
 		for(int i = 0; i < npcArr.size(); ++i){
-			if(npcArr.get(i).preName == name)
+			if(npcArr.get(i).preName.equalsIgnoreCase(name))
 				return npcArr.get(i);
 		}
 		
@@ -179,7 +266,7 @@ public class Game {
 		ArrayList<NPC> npcArr = getCharacters();
 		
 		for(int i = 0; i < npcArr.size(); ++i){
-			if(npcArr.get(i).preName == preName && npcArr.get(i).surName == surName)
+			if(npcArr.get(i).preName.equalsIgnoreCase(preName) && npcArr.get(i).surName.equalsIgnoreCase(surName))
 				return npcArr.get(i);
 		}
 		

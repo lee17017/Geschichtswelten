@@ -173,6 +173,10 @@ public class Location {
 	public void setEnterText(String enterText){
 		this.enterText = enterText;
 	}
+        
+        public void setObserveText(String observe){
+		this.observeText = observe;
+	}
 	
 	public void setExitCallback(IEnterExitCallback callback){
 		exitCallback = callback;

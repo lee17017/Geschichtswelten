@@ -27,36 +27,55 @@ public class NPC{
 			currentDialog = dialog;
 	}
 	
-	public void startDialog(GUI gui, Player player){
+	public void startDialog(GUI gui, World world, Player player){
 		if(currentDialog == null)
 			return;
 		
 		player.beginDialog();
-		currentDialog.writeCurrent(gui);
 		inDialog = true;
+		if(!currentDialog.writeCurrent(gui, world, player)){
+			currentDialog.end(gui, world, player);
+			player.endDialog();
+			inDialog = false;
+		}
 	}
 	
 	public void onDialogResponse(GUI gui, World world, Player player, String answer){
 		if(!inDialog)
 			return;
 		
-		int ans;
-		try{
-			ans = Integer.parseInt(answer);
-		} catch(NumberFormatException ex){
-			gui.writeln("Sie müssen eine gültige Zahl eingeben.", 0, 200);
+		if(!currentDialog.goTo(gui, world, player, answer)){
 			return;
 		}
 		
-		if(!currentDialog.goTo(gui, world, player, ans)){
-			gui.writeln("Sie müssen eine gültige Zahl eingeben.", 0, 200);
-			return;
-		}
-		
-		if(!currentDialog.writeCurrent(gui)){
+		if(!currentDialog.writeCurrent(gui, world, player)){
 			currentDialog.end(gui, world, player);
 			player.endDialog();
 			inDialog = false;
 		}
+	}
+	
+	/// Static Helper Functions
+	public static NPC initScarlett(int param){
+		NPC scarlett = new NPC("Scarlett", "Graham", param);
+		return scarlett;
+	}
+	
+	public static NPC initViola(int param){
+		NPC viola = new NPC("Viola", "Rose", param);
+		viola.setDialog(GameResources.torDialog);
+		return viola;
+	}
+	
+	public static NPC initElliot(int param){
+		NPC elliot = new NPC("Elliot", "Graham", param);
+		elliot.setDialog(GameResources.elliot1Dialog);
+		return elliot;
+	}
+	
+	public static NPC initDean(int param){
+		NPC dean = new NPC("Dean", "", param);
+		dean.setDialog(GameResources.dean1Dialog);
+		return dean;
 	}
 }

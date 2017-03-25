@@ -6,19 +6,25 @@ import world.Location;
 import world.World;
 
 public class Player {
+	private String name;
 	private int location;
 	private char orientation;
 	private ArrayList<Integer> inventory;
 	private boolean isInDialog;
 	
 	public Player(){
-		location = 9;
+		name = "Player";
+		location = 6;
 		inventory = new ArrayList<>();
 		isInDialog = false;
 	}
 	
 	public boolean Initialize(){
 		return true;
+	}
+	
+	public void setName(String name){
+		this.name = name;
 	}
 	
 	public boolean setLocation(GUI gui, World world, int location){
@@ -66,6 +72,7 @@ public class Player {
 	
 	
 	/// Getter
+	public String getName(){ return this.name; }
 	public int getLocation(){ return this.location; }
 	public char getOrientation(){ return this.orientation; }
 }

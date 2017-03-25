@@ -1,13 +1,15 @@
 gehe erklimme steig lauf sprint schleich renn begeb besuch wander spazier latsch marschier flanier stolzier schlender kriech humpel begebe schreite wandel bummel stelze stoeckle stöckle trotte tripple stapfe stiefle stakse watsch trampel 
 rede sprich plauder schwafel schwaetze schwätze tratsche unterhalte spreche informier unterricht erzähl erzaehle übermittel uebermittel übermittle uebermittle laber
-nimm nehm zieh hebe eigne erbeute 
+nimm nehm zieh hebe eigne erbeute hol
 öffne oeffne
-verwende benutze
-schau sehe sieh betrachte erkunde inspiziere mustere
+verwende benutze aktivier
+schau sehe sieh betrachte erkunde inspiziere mustere blick
 bewege rüttle ruettle rüttel ruettel
 klingel
 drücke druecke
 klopf
-
-
+greif
+dreh kurbel
+leer schütt 
+entferne 
 

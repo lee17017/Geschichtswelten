@@ -3,9 +3,15 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/D:/Benutzer/Geschichtswelten/TextAdventure/src/game/GUI.java</file>
+            <file>file:/D:/Benutzer/Geschichtswelten/TextAdventure/src/Application.java</file>
             <file>file:/D:/Benutzer/Geschichtswelten/TextAdventure/src/world/World.java</file>
-            <file>file:/D:/Benutzer/Geschichtswelten/TextAdventure/src/game/Player.java</file>
+            <file>file:/D:/Benutzer/Geschichtswelten/TextAdventure/src/game/NPC.java</file>
+            <file>file:/D:/Benutzer/Geschichtswelten/TextAdventure/src/game/Game.java</file>
+            <file>file:/D:/Benutzer/Geschichtswelten/TextAdventure/src/game/Parser.java</file>
+            <file>file:/D:/Benutzer/Geschichtswelten/TextAdventure/src/game/GameResources.java</file>
             <file>file:/D:/Benutzer/Geschichtswelten/TextAdventure/src/world/Location.java</file>
+            <file>file:/D:/Benutzer/Geschichtswelten/TextAdventure/src/world/LabyrinthField.java</file>
         </group>
     </open-files>
 </project-private>

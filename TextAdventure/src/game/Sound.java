@@ -65,7 +65,7 @@ public class Sound {
         }
 
         bgmCur = track;
-        if(track < 0)
+        if(track < 0 || track >= bgmAnz)
             return;
         bgmClip[track].setFramePosition(0);
         bgmClip[track].loop(Clip.LOOP_CONTINUOUSLY);
