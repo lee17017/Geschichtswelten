@@ -2,6 +2,15 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/D:/Benutzer/Geschichtswelten/TextAdventure/src/Application.java</file>
+            <file>file:/D:/Benutzer/Geschichtswelten/TextAdventure/src/game/GUI.java</file>
+            <file>file:/D:/Benutzer/Geschichtswelten/TextAdventure/src/game/Dialog.java</file>
+            <file>file:/D:/Benutzer/Geschichtswelten/TextAdventure/src/game/NPC.java</file>
+            <file>file:/D:/Benutzer/Geschichtswelten/TextAdventure/src/game/Game.java</file>
+            <file>file:/D:/Benutzer/Geschichtswelten/TextAdventure/src/game/Parser.java</file>
+            <file>file:/D:/Benutzer/Geschichtswelten/TextAdventure/src/game/GameResources.java</file>
+            <file>file:/D:/Benutzer/Geschichtswelten/TextAdventure/src/game/Event.java</file>
+        </group>
     </open-files>
 </project-private>

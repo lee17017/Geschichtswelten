@@ -88,7 +88,7 @@ class Output extends Thread{
 	            if(!waitTime.get(0).equals(0) && !fire){
 		            gui.text.setText(gui.text.getText() + inp.charAt(0));
 		            inp = inp.substring(1);
-                          
+                          gui.text.setCaretPosition( gui.text.getDocument().getLength());
 	            }
 	            else if(waitTime.get(0).equals(0) || fire){
 	            	gui.text.setText(gui.text.getText() + inp);
@@ -134,7 +134,7 @@ public class GUI extends JFrame{
     
     private Image[] background;
  
-    final int anzBackgrounds = 6;
+    final int anzBackgrounds = 10;
     Thread outThread = new Output(this, "", 0, 0);
     JPanel input = new JPanel();
     JPanel output = new JPanel();
@@ -164,7 +164,7 @@ public class GUI extends JFrame{
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new BorderLayout(0, 0));
       
-        bg = new ImagePanel(background[0]);
+        bg = new ImagePanel(background[7]);
         bg.setLayout(new BorderLayout());
         setContentPane(bg);
         

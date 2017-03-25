@@ -213,6 +213,10 @@ public class Location {
            soundID = id;
        }
 
+       public String getObserveText()
+       {
+           return observeText;
+       }
        public int getSoundID() {
            return this.soundID;
        }

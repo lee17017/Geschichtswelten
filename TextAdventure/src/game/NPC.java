@@ -31,18 +31,17 @@ public class NPC{
 	
 	public void startDialog(GUI gui, World world, Player player){
 		if(currentDialog == null)
-			return;/*
-		gui.enableWriting(false);
-                gui.setInputMessage("Press Enter");*/
+			return;
 		player.beginDialog();
 		inDialog = true;
+		
+		gui.setInputMessage(GameResources.defaultPressEnterText);
+		gui.enableWriting(false);
+		
 		if(!currentDialog.writeCurrent(gui, world, player)){
 			currentDialog.end(gui, world, player);
 			player.endDialog();
 			inDialog = false;
-                        
-               /* gui.setInputMessage("");
-		gui.enableWriting(true);*/
 		}
 	}
 	

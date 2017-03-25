@@ -1,5 +1,7 @@
 package game;
 
+import java.util.HashMap;
+
 import game.Dialog.DialogText;
 import world.World;
 import world.Location;
@@ -24,6 +26,8 @@ public class GameResources {
 	public static String defaultInvalidAttributeText = "Das Attribut stimmt nicht.";
 	public static String defaultInvalidLocationText = "Das ist kein gültiges Ziel.";
 	
+	public static String defaultPressEnterText = "Enter";
+	
 	
 	
 	///--- Game Texts
@@ -42,7 +46,7 @@ public class GameResources {
 		
 		"Ich bin mit dem Zug nach Edinburgh gefahren und warte jetzt auf mein Taxi, das mich in die Highlands zum Anwesen der Grahams bringen wird.\n"
 	};
-	
+	public static HashMap<Integer, Game.IInputCallback> prolog_1_callback_map;
 	
 	public static String[] prolog_2 = {
 		"„Sie wollen also zum Schloss der Grahams?“",
@@ -83,6 +87,9 @@ public class GameResources {
 		+ "Du solltest vermutlich versuchen den Weg ins Schloss zu finden, um dich der Familie vorzustellen und mit deiner Arbeit anzufangen.\n"
 		+ "\nBitte Befehl eingeben:"
 	};
+	public static HashMap<Integer, Game.IInputCallback> prolog_2_callback_map;
+	
+	
 	
 	///--- Dialogs
 	public static Dialog torDialog = new Dialog();
@@ -91,7 +98,23 @@ public class GameResources {
 	public static Dialog elliot1Dialog = new Dialog();
 	public static Dialog dean1Dialog = new Dialog();
 	
+	
+	
+	///--- Init
 	public static void init(){
+		/// Callback Maps
+		prolog_1_callback_map = new HashMap<Integer, Game.IInputCallback>();
+		prolog_2_callback_map = new HashMap<Integer, Game.IInputCallback>();
+		prolog_2_callback_map.put(3, new Game.IInputCallback() {
+			
+			@Override
+			public boolean callback(GUI gui, World world, Player player, String input) {
+				gui.setBg(8);
+				return true;
+			}
+		});
+		
+		
 		
 		/// Dialog Tor
 		int tor_1 = torDialog.createDialogText("???");
@@ -112,6 +135,8 @@ public class GameResources {
 			public void callback(GUI gui, World world, Player player, DialogText dialogText) {
 				
 				gui.writeln("Bitte gib deinen Namen ein.", 0, 200);
+				gui.setInputMessage("");
+				gui.enableWriting(true);
 				
 				Game.Get().addInputCallback(new Game.IInputCallback() {
 					
@@ -124,6 +149,9 @@ public class GameResources {
 						torDialog.setCharacterText(tor_4, -1, "Oh, Willkommen Mr. "+input+". Ich öffne ihnen gleich das Tor. Die Haustür ist nicht abgeschlossen, treten Sie also einfach ein. Ich erwarte Sie in der Eingangshalle.");
 						torDialog.setCharacterText(tor_3, tor_4, "Ich bin "+input+", der neue Butler.");
 						Game.Get().addEvent(1, new String[]{});
+						
+						gui.setInputMessage(GameResources.defaultPressEnterText);
+						gui.enableWriting(false);
 						
 						return true;
 					}

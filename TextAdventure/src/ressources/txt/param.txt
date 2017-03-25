@@ -27,3 +27,4 @@ park weg sitzeck
 erdgeschoß erdgeschoss galerie erster_Stock treppe
 dean
 mann
+rüstung riter ruestung

@@ -14,7 +14,7 @@ public class Player {
 	
 	public Player(){
 		name = "Player";
-		location = 0;
+		location = -1;
 		inventory = new ArrayList<>();
 		isInDialog = false;
 	}
@@ -31,16 +31,19 @@ public class Player {
 		if(Location.getLocation(location) == null || this.location == location)
 			return false;
 		
-                if(Location.getLocation(this.location).getSoundID() != Location.getLocation(location).getSoundID())
+                
+                    
+                if(this.location == -1 || Location.getLocation(this.location).getSoundID() != Location.getLocation(location).getSoundID())
                 {
                     Sound.playBGM(Location.getLocation(location).getSoundID());
                 }
                     
-                 if(Location.getLocation(this.location).getBildID() != Location.getLocation(location).getBildID())
+                 if(this.location  == -1 || Location.getLocation(this.location).getBildID() != Location.getLocation(location).getBildID())
                 {
                     gui.setBg(Location.getLocation(location).getBildID());
                 }
-		Location.getLocation(this.location).onExit(gui, world, this);
+                 if(this.location != -1)
+                    Location.getLocation(this.location).onExit(gui, world, this);
 		this.location = location;
 		Location.getLocation(this.location).onEnter(gui, world, this);
 		

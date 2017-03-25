@@ -133,5 +133,7 @@ public class Dialog {
 	
 	public void end(GUI gui, World world, Player player){
 		if(endCallback != null) endCallback.callback(gui, world, player, null);
+		gui.setInputMessage("");
+		gui.enableWriting(true);
 	}
 }
