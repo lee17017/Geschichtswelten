@@ -19,12 +19,12 @@ links
 rechts
 oben
 unten
-kurbel
+kurbel kurbl
 eimer
 grund metall glitzer medallion medalion wasser amulett
 zurück zurueck
-park weg sitzeck
+park weg sitzeck sitz_eck
 erdgeschoß erdgeschoss galerie erster_Stock treppe
 dean
 mann
-rüstung riter ruestung
+rüstung ritter ruestung

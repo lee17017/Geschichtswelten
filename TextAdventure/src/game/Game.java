@@ -87,6 +87,7 @@ public class Game {
         writeStoryText(GameResources.prolog_1_header, GameResources.prolog_1, new String[]{}, 35, 200, GameResources.prolog_1_callback_map);
         writeStoryText("", GameResources.prolog_2, GameResources.prolog_2_prefixes, 35, 200, GameResources.prolog_2_callback_map);
         isRunning = true;
+        Sound.playBGM(0);
         Run();
     }
 

@@ -6,6 +6,7 @@
 package world;
 
 import game.GUI;
+import game.Game;
 import game.GameResources;
 import game.Player;
 import java.util.HashMap;
@@ -111,9 +112,11 @@ public class LabyrinthField extends Location{
         
         if(pos ==81)
         {
-            gui.writeln("Du biegst um die Ecke und stehst plötzlich hinter einem großgewachsenen Mann und vor ihm, in einer Ecke des Labyrinths liegt zusammengesunken Edward Graham..", 0, 300);
             
-            gui.writeln("Demo Ende.", 0, 1000);
+            gui.writeln("Du biegst um die Ecke und stehst plötzlich hinter einem großgewachsenen Mann, der den Weg versperrt. Er scheint dich nicht kommen gehört zu haben. ", 0, 0);
+                Game.Get().getCharacterByPreName("dean").startDialog(gui, world, player);
+           // gui.writeln("Du biegst um die Ecke und stehst plötzlich hinter einem großgewachsenen Mann und vor ihm, in einer Ecke des Labyrinths liegt zusammengesunken Edward Graham..", 0, 300);
+            
         }
     }
     

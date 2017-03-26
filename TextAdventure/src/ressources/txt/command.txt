@@ -9,6 +9,7 @@ klingel
 drücke druecke
 klopf
 greif
-dreh kurbel
+dreh kurb
 leer schütt 
 entferne 
+schrei rufe brülle kreische rage wüte 

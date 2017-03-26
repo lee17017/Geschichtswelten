@@ -25,7 +25,7 @@ public class Sound {
     private static Clip[] bgmClip;
     private static int bgmCur = -1;
 
-    private static int sfxAnz = 1;
+    private static int sfxAnz = 2;
     private static Clip[] sfxClip;
     private static int sfxCur = -1;
 
@@ -89,7 +89,7 @@ if(track < 0 || track >= bgmAnz)
         if(track < 0)
             return;
         sfxClip[track].setFramePosition(0);
-        sfxClip[track].loop(Clip.LOOP_CONTINUOUSLY);
+        sfxClip[track].loop(0);
     }
 
 

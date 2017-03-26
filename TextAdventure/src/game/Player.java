@@ -32,13 +32,13 @@ public class Player {
 			return false;
 		
                 
-                    
-                if(this.location == -1 || Location.getLocation(this.location).getSoundID() != Location.getLocation(location).getSoundID())
+                    if(this.location==-1){}
+                    else if(Location.getLocation(this.location).getSoundID() != Location.getLocation(location).getSoundID())
                 {
                     Sound.playBGM(Location.getLocation(location).getSoundID());
                 }
                     
-                 if(this.location  == -1 || Location.getLocation(this.location).getBildID() != Location.getLocation(location).getBildID())
+                if(this.location == -1 || Location.getLocation(this.location).getBildID() != Location.getLocation(location).getBildID())
                 {
                     gui.setBg(Location.getLocation(location).getBildID());
                 }
