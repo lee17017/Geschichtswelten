@@ -1,0 +1,30 @@
+straße strasse
+tor tuer tür pforte
+zaun
+kasten klingel anlage
+einfahrt
+schloss schloß anwesen gebäude gebaeude haus
+blumen beet
+klopfer löwe loewe
+gemäld gemaeld bild
+flur
+elliot
+viola 
+scarllet scarlet 
+garten 
+eingangshalle
+brunnen
+labyrinth
+links
+rechts
+oben
+unten
+kurbel kurbl
+eimer
+grund metall glitzer medallion medalion wasser amulett
+zurück zurueck
+park weg sitzeck sitz_eck
+erdgeschoß erdgeschoss galerie erster_Stock treppe
+dean
+mann
+rüstung ritter ruestung
